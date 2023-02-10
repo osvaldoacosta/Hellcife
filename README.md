@@ -6,4 +6,4 @@ Neste jogo, o jogador tem de passar por várias hordas de inimigos e sobreviver 
 
 MOUSE - MIRA  
 BOTÃO ESQUERDO DO MOUSE - ATIRA  
-WASD - MOVIMENTAÇÃO DO   
+WASD - MOVIMENTAÇÃO DO JOGADOR  
