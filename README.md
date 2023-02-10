@@ -4,6 +4,6 @@ Neste jogo, o jogador tem de passar por várias hordas de inimigos e sobreviver 
 
 #### CONTROLES
 
-MOUSE - MIRA
-BOTÃO ESQUERDO DO MOUSE - ATIRA
-WASD - MOVIMENTAÇÃO DO JOGADOR
+MOUSE - MIRA  
+BOTÃO ESQUERDO DO MOUSE - ATIRA  
+WASD - MOVIMENTAÇÃO DO   
