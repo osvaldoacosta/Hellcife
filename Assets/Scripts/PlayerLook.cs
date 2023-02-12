@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
     private Camera mainCamera;
-    [SerializeField] PlayerMovement pm;
+    [SerializeField] PlayerMovement playerMovement;
 
     void Start()
     {
@@ -20,11 +20,11 @@ public class PlayerLook : MonoBehaviour
     private void MouseMovement()
     {
       if(Input.GetMouseButton(1)){
-        pm.setMovSpeed(3.5f);
+        playerMovement.modifySpeed(0.5f);
         Vector3 pointToLook = GetPointToLook();
         transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
       }else if(Input.GetMouseButtonUp(1)){
-        pm.setMovSpeed(7f); 
+        playerMovement.modifySpeed(1f);
       }
 
     }

@@ -1,37 +1,50 @@
 using System.Collections;
+using static System.Math;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] float movementSpeed = 7f;
-   
-    public void setMovSpeed(float value){
-      movementSpeed = value;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Starting player movement");
-        this.rb = GetComponent<Rigidbody>();
-        
-        
-    }
+  Rigidbody rb;
+  [SerializeField] float defaultMovementSpeed;
+  [SerializeField] float movementSpeed;
+  private Vector3 movementDirection;
+  
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        KeyboardMovement();
-    }
+  // Start is called before the first frame update
+  void Start()
+  {
+    Debug.Log("Starting player movement");
+    rb = this.GetComponent<Rigidbody>();
+  }
+  // Update is called once per frame
+  void Update()
+  {
+    float horizontalInput =  Input.GetAxis("Horizontal");
+    float verticalInput = Input.GetAxis("Vertical");
+    //the total input is the hypotenuse of both vertical and horizontal.
+    float totalInput = (float) System.Math.Sqrt((System.Math.Pow(horizontalInput, 2) +  System.Math.Pow(verticalInput, 2)));
     
-    private void KeyboardMovement(){
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        rb.velocity = new Vector3(horizontalInput * movementSpeed,rb.velocity.y,verticalInput * movementSpeed);
-        
+    // Limiting the total input to be of the same magnitude (-1<=x<=1)
+    if( totalInput > 1f){
+      horizontalInput = (horizontalInput/totalInput);
+      verticalInput = (verticalInput/totalInput);
     }
 
+    movementDirection = new Vector3(horizontalInput, 0f, verticalInput);
     
+  }
+  void FixedUpdate(){
+    movePlayer(movementDirection);
+  }
+
+  public void modifySpeed(float modificationPercentage){
+    movementSpeed = (defaultMovementSpeed * modificationPercentage);
+  }
+  public void setSpeed(float speed){
+    movementSpeed = speed;
+  }
+  private void movePlayer(Vector3 movementDirection){
+    rb.velocity = (movementDirection * movementSpeed);
+  }
 }
