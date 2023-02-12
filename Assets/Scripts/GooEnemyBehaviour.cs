@@ -18,7 +18,7 @@ public class GooEnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Acquire all cords abd distances
+        //Acquire all necessary cords and distances
         if(!acquireSelfCoordsAndTargetCoords()){
             return;
         }
@@ -37,7 +37,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         } else if(isTargetInAttackRange()){
             gooAttack();
         } else {
-            enemyNavMeshAgent.SetDestination(targetCoord);
+            followTarget();
         }
     }
 
@@ -77,6 +77,9 @@ public class GooEnemyBehaviour : MonoBehaviour
     private void gooAttack(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
         return;
+    }
+    private void followTarget(){
+        enemyNavMeshAgent.SetDestination(targetCoord);
     }
 }
 
