@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
   Rigidbody rb;
-  [SerializeField] float defaultMovementSpeed;
-  [SerializeField] float movementSpeed;
+  public float defaultMovementSpeed;
+  public float movementSpeed;
   private Vector3 movementDirection;
   
 
