@@ -5,20 +5,35 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody bulletRb;
+    private float damage;
+   
     private void Awake()
     {
         bulletRb = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+   
+    private void OnEnable()
     {
-        float speed = 40f;
-        bulletRb.velocity = transform.forward * speed;
+        Invoke("Disable", 5f);
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        IDamageable damageable = other.GetComponent<IDamageable>(); //checa se o objeto que colidiu possui a interface do IDamageable
+        if (damageable != null)
+        {
+            damageable.TakeDamage(damage);
+        }
+        Disable();
+    }
+    private void Disable()
+    {
+        bulletRb.velocity = Vector3.zero;
+        gameObject.SetActive(false);
+        
+    }
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
     }
 }
