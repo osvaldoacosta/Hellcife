@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
 
     [Header("Reference")]
-    [SerializeField] GunInfo gunInfo;
-    [SerializeField] Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma não vier com um objeto muzzle)
+    [SerializeField] private GunInfo gunInfo;
+    [SerializeField] private Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma não vier com um objeto muzzle)
+    [SerializeField] private Transform bulletProjectile; //Objeto da balita
     float timeSinceLastShot;
-    public Transform bullet;
+    
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class Gun : MonoBehaviour
     }
     private void Aim(bool isAiming) => gunInfo.isAiming = isAiming;
 
-    private bool CanShoot() => !gunInfo.isReloading && timeSinceLastShot > 1f / (gunInfo.roundsPerMinute/60) && gunInfo.isAiming;
+    private bool CanShoot() => !gunInfo.isReloading && timeSinceLastShot > 1f / (gunInfo.roundsPerMinute/60) && gunInfo.isAiming ;
 
     private void StartReload()
     {
@@ -45,21 +47,32 @@ public class Gun : MonoBehaviour
     {
         if (gunInfo.currentAmmo > 0)
         {
-            Debug.Log(gunInfo.isAiming + ", isReloading:" + gunInfo.isReloading + " - " + CanShoot());
+            //Debug.Log(gunInfo.isAiming + ", isReloading:" + gunInfo.isReloading + " - " + CanShoot());
 
-            bool canShoot = CanShoot();
-            if (canShoot)
+            if (CanShoot())
             {
-                Debug.Log("TIRO");
-                gunInfo.currentAmmo -= 1;
-                timeSinceLastShot = 0f;
+                OnGunShoot();
             }
         }
     }
+
+    private void OnGunShoot()
+    {
+
+        Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
+        Transform bullet = Instantiate(bulletProjectile, muzzle.position,Quaternion.LookRotation(muzzleDirection));
+        //Debug.DrawRay(bullet.position, muzzleDirection*10,Color.blue);
+
+        
+        gunInfo.currentAmmo -= 1;
+        timeSinceLastShot = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-       
+        Vector3 dir = muzzle.transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(muzzle.position, dir * 10, Color.blue);
     }
 }

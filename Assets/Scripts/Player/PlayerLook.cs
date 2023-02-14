@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -20,17 +21,23 @@ public class PlayerLook : MonoBehaviour
     }
     private void MouseMovement()
     {
-      if(Input.GetMouseButton(1)){
-        aimingInput?.Invoke(true);
-        pm.setMovSpeed(3.5f);
-        Vector3 pointToLook = GetPointToLook();
-        transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        
+        
+        
 
-      }else if(Input.GetMouseButtonUp(1)){
+        if (Input.GetMouseButton(1)){
+            Vector3 pointToLook = GetPointToLook();
+            aimingInput?.Invoke(true);
+            pm.setMovSpeed(3.5f);
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
 
-        aimingInput?.Invoke(false);
-        pm.setMovSpeed(7f); 
-      }
+
+        }
+        else if(Input.GetMouseButtonUp(1)){
+
+            aimingInput?.Invoke(false);
+            pm.setMovSpeed(7f); 
+         }
 
     }
 

@@ -11,14 +11,14 @@ public class GunInfo : ScriptableObject
     [Header("Shooting")]
     public float damage;
     public float maxDistance;
-
+    public bool isAutomatic;
+    public bool wasShot;
     [Header("Reloading")]
     public int currentAmmo;
     public int magSize;
     public float roundsPerMinute;
     public float reloadTime;
 
-    [HideInInspector]
     public bool isReloading;
     public bool isAiming;
     
