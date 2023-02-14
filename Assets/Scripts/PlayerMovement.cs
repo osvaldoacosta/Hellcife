@@ -1,7 +1,7 @@
 using System.Collections;
-using static System.Math;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Math;
 
 public class PlayerMovement : MonoBehaviour
 {
