@@ -29,6 +29,7 @@ public class PlayerLook : MonoBehaviour
             Vector3 pointToLook = GetPointToLook();
             aimingInput?.Invoke(true);
             pm.setMovSpeed(3.5f);
+
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
 
 

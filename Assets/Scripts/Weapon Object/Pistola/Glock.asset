@@ -15,11 +15,11 @@ MonoBehaviour:
   name: Glock
   damage: 10
   maxDistance: 50
-  isAutomatic: 0
+  isAutomatic: 1
   wasShot: 0
-  currentAmmo: 15
-  magSize: 15
-  roundsPerMinute: 550
+  currentAmmo: 0
+  magSize: 3000
+  roundsPerMinute: 1100
   reloadTime: 1
   isReloading: 0
   isAiming: 0
