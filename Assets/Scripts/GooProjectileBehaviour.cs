@@ -29,19 +29,16 @@ public class GooProjectileBehaviour : MonoBehaviour
 
     private float newGooPuddleRadius;
     private float newGooPuddleDuration;
-    // Start is called before the first frame update
-    void Start()
-    {
-        startingPoint = transform.position;
-        return;
-    }
+
+    public GameObject gooPuddleObjectPool;
+    private GameObject newGooPuddle;
 
     // Update is called once per frame
     void Update()
     {
         if(isBeingLaunched){
-            float completePercentage = timeSinceLaunch/totalLaunchTime;
             timeSinceLaunch= Time.time - timeAtLaunch;
+            float completePercentage = timeSinceLaunch/totalLaunchTime;
             frameXRelativePosition= totalXTravel*(completePercentage);
             frameZRelativePosition= totalZTravel*(completePercentage);
 
@@ -52,19 +49,23 @@ public class GooProjectileBehaviour : MonoBehaviour
                 isBeingLaunched= false;
                 //making sure it lands on the intended spot, taking into account that there is imprecision on the calculation of the parabola coords
                 transform.position= landingPoint;
-                createAndManageGooPuddle(landingPoint, newGooPuddleRadius, newGooPuddleDuration);
+                createGooPuddle(landingPoint, newGooPuddleRadius, newGooPuddleDuration);
+                this.gameObject.SetActive(false);
             }
         }
     }
+    void OnEnable(){
+        this.gameObject.GetComponent<TrailRenderer>().Clear();
+    }
 
-    public void setGooShot(float parabolaMaxHeight, Vector3 gooProjectileLandingCoord, float gooProjectileAirTime, float gooPuddleRadius, float gooPuddleDuration){
-        startingPoint= transform.position;
+    public void setGooShot(Vector3 launchPoint,float parabolaMaxHeight, Vector3 gooProjectileLandingCoord, float gooProjectileAirTime, float gooPuddleRadius, float gooPuddleDuration){
+        startingPoint= launchPoint;
         landingPoint= gooProjectileLandingCoord;
         
-        totalXTravel = gooProjectileLandingCoord.x-transform.position.x;
-        totalZTravel = gooProjectileLandingCoord.z-transform.position.z;
-        totalHorizontalTravel =  (float)System.Math.Sqrt(System.Math.Pow(totalXTravel, 2) + System.Math.Pow(totalZTravel, 2));
-        totalYTravel = gooProjectileLandingCoord.y-transform.position.y;
+        totalXTravel = gooProjectileLandingCoord.x-launchPoint.x;
+        totalZTravel = gooProjectileLandingCoord.z-launchPoint.z;
+        totalHorizontalTravel= (float)System.Math.Sqrt(System.Math.Pow(totalXTravel, 2) + System.Math.Pow(totalZTravel, 2));
+        totalYTravel = gooProjectileLandingCoord.y-launchPoint.y;
 
         parabolaA= -1*(parabolaMaxHeight)/((float)System.Math.Pow(totalHorizontalTravel/2, 2));
         parabolaB= -2*(totalHorizontalTravel/2)*parabolaA;
@@ -76,8 +77,15 @@ public class GooProjectileBehaviour : MonoBehaviour
         newGooPuddleRadius= gooPuddleRadius;
 
         isBeingLaunched= true;
+        this.gameObject.SetActive(true);
     }
-    private void createAndManageGooPuddle(Vector3 gooProjectileLandingCoord, float gooPuddleRadius, float gooPuddleDuration){
-        return;
+    private void createGooPuddle(Vector3 gooPuddleCoord, float gooPuddleRadius, float gooPuddleDuration){
+        newGooPuddle= gooPuddleObjectPool.GetComponent<ObjectPool>().GetPooledObject(); 
+        if (newGooPuddle != null) {
+            newGooPuddle.transform.position = gooPuddleCoord;
+            newGooPuddle.transform.rotation = transform.rotation;
+            newGooPuddle.GetComponent<GooPuddleBehaviour>().setGooPuddle(gooPuddleDuration, gooPuddleRadius);
+            newGooPuddle.SetActive(true);
+        }
     }
 }

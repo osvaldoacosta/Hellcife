@@ -14,9 +14,9 @@ public class GooEnemyBehaviour : MonoBehaviour
     public float panicRunDistance= 3f;
     
     //cooldown times
-    public const float panicDuration= 1.5f;
-    public const float attackDuration= 2.0f;
-    public const float attackCooldown= 5.0f;
+    public float panicDuration= 1.5f;
+    public float attackDuration= 2.0f;
+    public float attackCooldown= 5.0f;
 
     //end of cooldowns
     private float endOfAttack= -1f;
@@ -40,7 +40,7 @@ public class GooEnemyBehaviour : MonoBehaviour
     private bool ableToSeeSorroundings;
 
     //This enemy shoots projectiles, so there is a special handler
-    [SerializeField] GooProjectileHandler gooProjectileHandler;
+    [SerializeField] GooProjectileShooter gooProjectileShooter;
     
     //The "goo" attack is shot in a parabola and its parameters can me modified here
     float parabolaMaxHeight= 7f;
@@ -95,7 +95,7 @@ public class GooEnemyBehaviour : MonoBehaviour
     }
     private bool visionIsObstructed(){
         //ground raycast from the enemy to the target
-        if(Physics.Raycast(enemyCoord, new Vector3(-horizontalDistanceFromTargetVector.x, 0f, -horizontalDistanceFromTargetVector.z), out var hitInfo, horizontalDistanceFromTargetVector.magnitude)){
+        if(Physics.Raycast(enemyCoord, new Vector3(-horizontalDistanceFromTargetVector.x, 0f, -horizontalDistanceFromTargetVector.z), out var hitInfo, horizontalDistanceFromTargetVector.magnitude, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             return true;
         } else {
             return false;
@@ -167,14 +167,14 @@ public class GooEnemyBehaviour : MonoBehaviour
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 
-        //TO-DO
-        //do an attack animation
-        Vector3 launchPoint = transform.position+ new Vector3(0f, 1f, 0f);
+        /*TO-DO
+        do an attack animation*/
+        Vector3 launchPoint = gooProjectileShooter.transform.position;
         Vector3 gooProjectileLandingCoord = targetCoord;
         gooProjectileLandingCoord= addRandomnessToXZCoords(gooProjectileLandingCoord, shotImprecision); 
 
         //create the projectile and send it
-        gooProjectileHandler.launchGooProjectile(launchPoint, parabolaMaxHeight, gooProjectileLandingCoord, gooProjectileAirTime, gooPuddleRadius, gooPuddleDuration);
+        gooProjectileShooter.launchGooProjectile(launchPoint, parabolaMaxHeight, gooProjectileLandingCoord, gooProjectileAirTime, gooPuddleRadius, gooPuddleDuration);
 
         //update the attack animation cooldown and attack cooldown
         endOfAttack= Time.time + attackDuration;
@@ -182,15 +182,12 @@ public class GooEnemyBehaviour : MonoBehaviour
     }
     //add randomness to a xz vector in a circular pattern
     private Vector3 addRandomnessToXZCoords(Vector3 originalVector ,float imprecision){
-        float missDistance= Random.Range(-1f, 1f) * imprecision;
+        float missDistance= Random.Range(0, 1f) * imprecision;
+        float missAngle = Random.Range(0, 360);
         Vector3 randomnessVector = new Vector3(0f, 0f, 0f);
-        randomnessVector.x= (float)Random.Range(-1f,1f) * missDistance;
-        randomnessVector.z= (float)System.Math.Sqrt((System.Math.Pow(missDistance, 2) -  System.Math.Pow(randomnessVector.x, 2)));
+        randomnessVector.x= Mathf.Cos(missAngle) * missDistance;
+        randomnessVector.z= Mathf.Sin(missAngle) * missDistance;
 
-        int coinFlip = Random.Range(-1, 1);
-        if(coinFlip==-1){
-            randomnessVector.z= randomnessVector.z * -1;
-        }
         return (originalVector + randomnessVector);
     }
 }
