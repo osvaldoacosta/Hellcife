@@ -76,13 +76,13 @@ public class GooEnemyBehaviour : MonoBehaviour
         return false;
     }
     private void acquireSelfCoordsAndTargetCoords(){
-        if(Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), out var enemyHitInfo)){
+        if(Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), out var enemyHitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             enemyCoord = enemyHitInfo.point;
             ableToSeeSorroundings= true;
         } else {
             ableToSeeSorroundings= false;
         }
-        if(Physics.Raycast(target.transform.position, new Vector3(0f, -1f, 0f), out var hitInfo)){
+        if(Physics.Raycast(target.transform.position, new Vector3(0f, -1f, 0f), out var hitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             targetCoord = hitInfo.point;
             ableToSeeSorroundings= true;
         } else {
