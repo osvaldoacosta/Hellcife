@@ -16,7 +16,7 @@ public class Target : MonoBehaviour, IDamageable
     {
         current_health -= damage;
         IsDead();
-        Debug.Log(current_health);
+        Debug.Log("target hp: "+current_health);
         
     }
     

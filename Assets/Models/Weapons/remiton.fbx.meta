@@ -7,39 +7,48 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Madeira
+    second: {fileID: 2100000, guid: 101b55500a16a3f4aa8086ff1080569d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Steel
-    second: {fileID: -8081228178661188526, guid: 9f2f3b10654729749ab5cc78bfb14bc2,
-      type: 3}
+    second: {fileID: 2100000, guid: 9f75a6917a53ee04a8085c1f98370c6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Steel.001
+    second: {fileID: 2100000, guid: d999f304b50f5ee45a0be9ba500cc279, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: GWC Basic Steel_BaseColor
-    second: {fileID: 2800000, guid: cd07e4fed9bd8e8499e5cae2f481aaac, type: 3}
+    second: {fileID: 2800000, guid: 2e9c60c3d76fdb94ca69f34190c41718, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: GWC Basic Steel_Metalness
-    second: {fileID: 2800000, guid: 1844dc71ac4973e40af828ccb7d0205a, type: 3}
+    second: {fileID: 2800000, guid: f4524f1e4141ba74bbfe3e7de12e595d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: GWC Basic Steel_Normal
-    second: {fileID: 2800000, guid: 21f67ae3ec93ef64dba8b44d7dccc661, type: 3}
+    second: {fileID: 2800000, guid: 41e41e40e0bb02e4c82fa2c53bfce901, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: walnut_albedo
-    second: {fileID: 2800000, guid: fd0e146efddc8e04da1f7ea9dc954bd8, type: 3}
+    second: {fileID: 2800000, guid: 75c49c4ad6e77914990456f224b8285f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: walnut_normal
-    second: {fileID: 2800000, guid: dc686daa25dffc04e96b291995cd3152, type: 3}
+    second: {fileID: 2800000, guid: c26c493b003054e4e9aa0e81219cc62d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: walnut_roughness
-    second: {fileID: 2800000, guid: ba66d16f7d0cc744a9069dcb2679e353, type: 3}
+    second: {fileID: 2800000, guid: 1563b7b62dd97f0439fa665c19c90931, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
