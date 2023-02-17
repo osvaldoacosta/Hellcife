@@ -23,16 +23,14 @@ public class BulletPool : MonoBehaviour
             bullet.SetActive(false);
         }
     }
-    //Retorna uma bala valida (ou seja, uma bala que nao esta ativa, caso não tenha nenhuma ativa na lista, criara uma bala nova)
+    //Retorna uma bala valida (ou seja, uma bala que nao esta ativa, caso nï¿½o tenha nenhuma ativa na lista, criara uma bala nova)
     public GameObject GetBullet()
     {
-        //Se todas as balas da lista presente no GameObjectPool estiverem ativas(não podemos instanciar balas ativas), ele ira criar novas balas para a lista
+        //Se todas as balas da lista presente no GameObjectPool estiverem ativas(nï¿½o podemos instanciar balas ativas), ele ira criar novas balas para a lista
         foreach (GameObject bullet in bulletsList)
         {
             if (!bullet.activeInHierarchy)
             {
-                bullet.SetActive(true);
-                
                 return bullet;
             }
         }

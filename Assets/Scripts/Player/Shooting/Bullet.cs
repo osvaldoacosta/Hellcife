@@ -15,8 +15,10 @@ public class Bullet : MonoBehaviour
    
     private void OnEnable()
     {
+        this.gameObject.GetComponent<TrailRenderer>().Clear();
         Invoke("Disable", 5f);
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.GetComponent<IDamageable>(); //checa se o objeto que colidiu possui a interface do IDamageable
@@ -31,7 +33,6 @@ public class Bullet : MonoBehaviour
     {
         bulletRb.velocity = Vector3.zero;
         gameObject.SetActive(false);
-        
     }
     public void SetDamage(float damage)
     {

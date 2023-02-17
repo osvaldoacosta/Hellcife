@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] private GunInfo gunInfo;
-    [SerializeField] private Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma não vier com um objeto muzzle)
+    [SerializeField] private Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma nï¿½o vier com um objeto muzzle)
     [SerializeField] private Transform bulletProjectile; //Objeto da balita
     private float timeSinceLastShot;
     private BulletPool _pool;
@@ -62,19 +62,17 @@ public class Gun : MonoBehaviour
     {
 
         Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
-        //Transform bullet = Instantiate(bulletProjectile, muzzle.position,Quaternion.LookRotation(muzzleDirection)); //Usando o método tradicional de instanciar uma bala nova
+        //Transform bullet = Instantiate(bulletProjectile, muzzle.position,Quaternion.LookRotation(muzzleDirection)); //Usando o mï¿½todo tradicional de instanciar uma bala nova
         //Debug.DrawRay(bullet.position, muzzleDirection*10,Color.blue);
         //Usando um game object pool, com as balas
 
         GameObject bullet = _pool.GetBullet();
 
         bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); //Seta o dano dessa balita
-
-        bullet.transform.position = muzzle.position; //Bota a bala na posição certa
+        bullet.transform.position = muzzle.position; //Bota a bala na posiï¿½ï¿½o certa
         
-
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 30f; //Fazer algum calculo doido para velocidade da bala
-
+        bullet.SetActive(true);
         
         
         gunInfo.currentAmmo -= 1;
