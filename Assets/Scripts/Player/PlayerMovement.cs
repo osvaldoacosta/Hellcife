@@ -53,9 +53,7 @@ public class PlayerMovement : MonoBehaviour
     movePlayer(movementDirection);
   }
 
-  public void modifySpeed(float modificationPercentage){
-    movementSpeed = (defaultMovementSpeed * modificationPercentage);
-  }
+
   public void setSpeed(float speed){
     movementSpeed = speed;
   }
@@ -63,3 +61,4 @@ public class PlayerMovement : MonoBehaviour
     rb.velocity = (movementDirection * movementSpeed);
   }
 }
+

@@ -1,12 +1,16 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class PlayerLook : MonoBehaviour
 {
     private Camera mainCamera;
+    public static Action<bool> aimingInput;
     [SerializeField] PlayerMovement playerMovement;
-
     void Start()
     {
         this.mainCamera = Camera.main;
@@ -21,9 +25,11 @@ public class PlayerLook : MonoBehaviour
     {
       if(Input.GetMouseButton(1)){
         playerMovement.isAiming= true;
+        aimingInput?.Invoke(true);
         Vector3 pointToLook = GetPointToLook();
         transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
       }else if(Input.GetMouseButtonUp(1)){
+        aimingInput?.Invoke(false);
         playerMovement.isAiming= false;
       }
 
