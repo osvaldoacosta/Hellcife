@@ -22,6 +22,7 @@ public class GooProjectileBehaviour : MonoBehaviour
 
     private float parabolaA;
     private float parabolaB;
+    private float parabolaCompletionPercentage;
 
     float frameXRelativePosition;
     float frameYRelativePosition;
@@ -38,12 +39,12 @@ public class GooProjectileBehaviour : MonoBehaviour
     {
         if(isBeingLaunched){
             timeSinceLaunch= Time.time - timeAtLaunch;
-            float completePercentage = timeSinceLaunch/totalLaunchTime;
-            frameXRelativePosition= totalXTravel*(completePercentage);
-            frameZRelativePosition= totalZTravel*(completePercentage);
+            parabolaCompletionPercentage = timeSinceLaunch/totalLaunchTime;
+            frameXRelativePosition= totalXTravel*(parabolaCompletionPercentage);
+            frameZRelativePosition= totalZTravel*(parabolaCompletionPercentage);
 
-            frameYRelativePosition= totalYTravel*(completePercentage);
-            frameYRelativePosition+= parabolaA*((float)System.Math.Pow(totalHorizontalTravel*(completePercentage), 2)) + parabolaB*(totalHorizontalTravel*(completePercentage)); 
+            frameYRelativePosition= totalYTravel*(parabolaCompletionPercentage);
+            frameYRelativePosition+= parabolaA*((float)System.Math.Pow(totalHorizontalTravel*(parabolaCompletionPercentage), 2)) + parabolaB*(totalHorizontalTravel*(parabolaCompletionPercentage)); 
             transform.position= startingPoint + new Vector3(frameXRelativePosition, frameYRelativePosition, frameZRelativePosition);
             if(timeSinceLaunch>=totalLaunchTime){
                 isBeingLaunched= false;

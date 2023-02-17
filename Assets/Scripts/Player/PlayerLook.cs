@@ -20,11 +20,11 @@ public class PlayerLook : MonoBehaviour
     private void MouseMovement()
     {
       if(Input.GetMouseButton(1)){
-        playerMovement.modifySpeed(0.5f);
+        playerMovement.isAiming= true;
         Vector3 pointToLook = GetPointToLook();
         transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
       }else if(Input.GetMouseButtonUp(1)){
-        playerMovement.modifySpeed(1f);
+        playerMovement.isAiming= false;
       }
 
     }

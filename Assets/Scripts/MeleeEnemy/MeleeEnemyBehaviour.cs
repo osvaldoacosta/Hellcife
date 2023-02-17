@@ -7,11 +7,16 @@ public class MeleeEnemyBehaviour : MonoBehaviour
 {
     public NavMeshAgent enemyNavMeshAgent;
     public GameObject target;
+    
+    //TO-DO: ATTACK MECHANICS
     public float attackRange= 2f;
+    public int attackDamage= 5;
+    public float attackWindupDuration= 0.2f;
+    public float attackAnimationLockTotalDuration= 0.5f;
 
-    Vector3 enemyCoord;
-    Vector3 targetCoord;
-    Vector3 distanceFromTargetVector;
+    private Vector3 enemyCoord;
+    private Vector3 targetCoord;
+    private Vector3 distanceFromTargetVector;
 
     // Update is called once per frame
     void Update()

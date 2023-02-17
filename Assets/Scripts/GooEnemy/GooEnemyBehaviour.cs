@@ -15,10 +15,12 @@ public class GooEnemyBehaviour : MonoBehaviour
     
     //cooldown times
     public float panicDuration= 1.5f;
-    public float attackDuration= 2.0f;
-    public float attackCooldown= 5.0f;
+    public float attackFinishingDuration= 2.0f;
+    public float attackWindupDuration= 0.8f;
+    public float attackCooldownDuration= 5.0f;
 
     //end of cooldowns
+    private float endOfAttackWindup = -1f;
     private float endOfAttack= -1f;
     private float endOfAttackCooldown= -1f;
     private float endOfPanic= -1f;
@@ -33,10 +35,12 @@ public class GooEnemyBehaviour : MonoBehaviour
     public enum EnemyStates{
         idle = 0,
         following = 1,
-        attacking = 2,
-        panicking = 3
+        panicking = 2,
+        windingUpAttack = 3,
+        finishingAttack = 4
     }
-    [SerializeField] private EnemyStates activeEnemyState;
+    //current enemy state + vision
+    [SerializeField] private EnemyStates activeEnemyState= 0;
     private bool ableToSeeSorroundings;
 
     //This enemy shoots projectiles, so there is a special handler
@@ -44,7 +48,7 @@ public class GooEnemyBehaviour : MonoBehaviour
     
     //The "goo" attack is shot in a parabola and its parameters can me modified here
     float parabolaMaxHeight= 7f;
-    public float shotImprecision= 3f;
+    public float gooShotImprecision= 3f;
     public float gooProjectileAirTime= 1.5f;
     public float gooPuddleRadius = 3f;
     public float gooPuddleDuration = 5f;
@@ -52,28 +56,50 @@ public class GooEnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isActionLocked()) return;
+        if(isActionLocked()){
+            switch (activeEnemyState){
+                case EnemyStates.panicking:
+                    if( Time.time < endOfPanic ){
+                        fleeFromTarget();
+                        return;
+                    }
+                    break;
+                case EnemyStates.windingUpAttack:
+                    if(Time.time< endOfAttackWindup){
+                        return;
+                    }
+                    gooAttack();
+                    activeEnemyState= EnemyStates.finishingAttack;
+                    return;
+                    break;
+                case EnemyStates.finishingAttack:
+                    if( Time.time < endOfAttack ){
+                        //silly attack animation for debug purposes
+                        transform.localScale= new Vector3(0.8f, 1.2f, 0.8f);
+                        return;
+                    }
+                    //silly attack animation for debug purposes
+                    transform.localScale= new Vector3(1f, 1f, 1f);
+                    break;
+                default:
+                    break;
+            }
+        }
         acquireSelfCoordsAndTargetCoords();
         decideActiveState();
-        enemyAction(activeEnemyState);
+        enemyAction();
     }
 
     private bool isActionLocked(){
-        if(activeEnemyState == EnemyStates.attacking){
-            if( Time.time < endOfAttack ){
+        switch (activeEnemyState){
+            case EnemyStates.panicking:
+            case EnemyStates.windingUpAttack:
+            case EnemyStates.finishingAttack:
                 return true;
-            }
+                break;
+            default:
+                return false;
         }
-        if(activeEnemyState == EnemyStates.panicking){
-            if( Time.time < endOfPanic ){
-                acquireSelfCoordsAndTargetCoords();
-                calculateHorizontalDistanceFromTargetAsVector();
-                calculatePanicRunDestination();
-                enemyNavMeshAgent.SetDestination(panicRunDestination);
-                return true;
-            }
-        }
-        return false;
     }
     private void acquireSelfCoordsAndTargetCoords(){
         if(Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), out var enemyHitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
@@ -94,6 +120,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         horizontalDistanceFromTargetVector.y= 0f;
     }
     private bool visionIsObstructed(){
+        calculateHorizontalDistanceFromTargetAsVector();
         //ground raycast from the enemy to the target
         if(Physics.Raycast(enemyCoord, new Vector3(-horizontalDistanceFromTargetVector.x, 0f, -horizontalDistanceFromTargetVector.z), out var hitInfo, horizontalDistanceFromTargetVector.magnitude, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             return true;
@@ -108,6 +135,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         return (horizontalDistanceFromTargetVector.magnitude < attackRange);
     }
     private void calculatePanicRunDestination(){
+        calculateHorizontalDistanceFromTargetAsVector();
         panicRunDestination= enemyCoord + (horizontalDistanceFromTargetVector.normalized * panicRunDistance);
     }
     private void beIdle(){
@@ -118,67 +146,87 @@ public class GooEnemyBehaviour : MonoBehaviour
         enemyNavMeshAgent.SetDestination(targetCoord);
     }
     private void fleeFromTarget(){
+        acquireSelfCoordsAndTargetCoords();
         calculatePanicRunDestination();
         enemyNavMeshAgent.SetDestination(panicRunDestination);
+    }
+    private void panic(){
+        fleeFromTarget();
         endOfPanic = Time.time + panicDuration;
     }
+    private void startAttackWindup(){
+        enemyNavMeshAgent.SetDestination(enemyCoord);
+        //silly attack animation for debug purposes
+        transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
+        endOfAttackWindup= Time.time + attackWindupDuration;
+    }
     private void decideActiveState(){
-        //Acquire all necessary cords and distances. If can't find the player or itself, stay idle
-        if(!ableToSeeSorroundings){
-            activeEnemyState= EnemyStates.idle;
-        } else {
-            calculateHorizontalDistanceFromTargetAsVector();
-            //Check if the enemy vision to the target is obstructed
-            if(visionIsObstructed()){
-                activeEnemyState= EnemyStates.following;
-            } else {
-                if(isTargetTooClose()){
-                    activeEnemyState= EnemyStates.panicking;
-                } else if(isTargetInAttackRange()){
-                    activeEnemyState= EnemyStates.attacking;
+        switch(activeEnemyState){
+            default:
+                if(!ableToSeeSorroundings){
+                    activeEnemyState= EnemyStates.idle;
+                    return;
                 } else {
-                    activeEnemyState= EnemyStates.following;
+                    //Check if the enemy vision to the target is obstructed
+                    if(visionIsObstructed()){
+                        activeEnemyState= EnemyStates.following;
+                        return;
+                    } else {
+                        if(isTargetTooClose()){
+                            activeEnemyState= EnemyStates.panicking;
+                            return;
+                        } else if(isTargetInAttackRange()){
+                            if(Time.time < endOfAttackCooldown){
+                                activeEnemyState= EnemyStates.idle;
+                            } else {
+                                activeEnemyState= EnemyStates.windingUpAttack;
+                            }
+                            return;
+                        } else {
+                            activeEnemyState= EnemyStates.following;
+                            return;
+                        }
+                    }
                 }
-            }
         }
     }
-    private void enemyAction(EnemyStates activeEnemyState){
-        switch (activeEnemyState)
-        {
+    private void enemyAction(){
+        switch (activeEnemyState){
             case EnemyStates.idle:
                 beIdle();
                 return;
+                break;
             case EnemyStates.following:
                 followTarget();
                 break;
             case EnemyStates.panicking:
-                fleeFromTarget();
+                panic();
                 break;
-            case EnemyStates.attacking:
-                if(Time.time > endOfAttackCooldown){
-                    gooAttack();
-                }
+            case EnemyStates.windingUpAttack:
+                startAttackWindup();
                 break;
             default:
                 return;
         }
     }
     private void gooAttack(){
+        //silly attack animation for debug purposes
+        transform.localScale= new Vector3(1f, 1f, 1f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 
-        /*TO-DO
-        do an attack animation*/
+        acquireSelfCoordsAndTargetCoords();
+
         Vector3 launchPoint = gooProjectileShooter.transform.position;
         Vector3 gooProjectileLandingCoord = targetCoord;
-        gooProjectileLandingCoord= addRandomnessToXZCoords(gooProjectileLandingCoord, shotImprecision); 
+        gooProjectileLandingCoord= addRandomnessToXZCoords(gooProjectileLandingCoord, gooShotImprecision); 
 
         //create the projectile and send it
         gooProjectileShooter.launchGooProjectile(launchPoint, parabolaMaxHeight, gooProjectileLandingCoord, gooProjectileAirTime, gooPuddleRadius, gooPuddleDuration);
 
         //update the attack animation cooldown and attack cooldown
-        endOfAttack= Time.time + attackDuration;
-        endOfAttackCooldown= Time.time + attackCooldown;
+        endOfAttack= Time.time + attackFinishingDuration;
+        endOfAttackCooldown= Time.time + attackCooldownDuration;
     }
     //add randomness to a xz vector in a circular pattern
     private Vector3 addRandomnessToXZCoords(Vector3 originalVector ,float imprecision){
@@ -187,7 +235,6 @@ public class GooEnemyBehaviour : MonoBehaviour
         Vector3 randomnessVector = new Vector3(0f, 0f, 0f);
         randomnessVector.x= Mathf.Cos(missAngle) * missDistance;
         randomnessVector.z= Mathf.Sin(missAngle) * missDistance;
-
         return (originalVector + randomnessVector);
     }
 }

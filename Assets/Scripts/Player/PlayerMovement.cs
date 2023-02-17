@@ -8,8 +8,12 @@ public class PlayerMovement : MonoBehaviour
   Rigidbody rb;
   public float defaultMovementSpeed;
   public float movementSpeed;
+
+  public bool isOnGooPuddle = false;
+  public float gooPuddleMovementSpeedDebuff= 2f;
+  public bool isAiming = false;
+  public float aimingMovementSpeedDebuff = 1f;
   private Vector3 movementDirection;
-  
 
   // Start is called before the first frame update
   void Start()
@@ -32,7 +36,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     movementDirection = new Vector3(horizontalInput, 0f, verticalInput);
-    
+
+    //Appling aiming and goo puddle debuffs
+    movementSpeed= defaultMovementSpeed;
+    if(isOnGooPuddle){
+      movementSpeed-= gooPuddleMovementSpeedDebuff;
+    }
+    if(isAiming){
+      movementSpeed-= aimingMovementSpeedDebuff;
+    }
+    if(movementSpeed< 0f){
+      movementSpeed= 0f;
+    }
   }
   void FixedUpdate(){
     movePlayer(movementDirection);
