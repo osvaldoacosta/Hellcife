@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody bulletRb;
     private float damage;
-   
+    
     private void Awake()
     {
         bulletRb = GetComponent<Rigidbody>();
@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
         {
             damageable.TakeDamage(damage);
         }
+
         Disable();
     }
     private void Disable()
