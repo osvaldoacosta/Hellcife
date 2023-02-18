@@ -7,15 +7,14 @@ public class Gun : MonoBehaviour
 {
 
     [Header("Reference")]
+    [SerializeField] private ObjectPool bulletPool;
     [SerializeField] private GunInfo gunInfo;
     [SerializeField] private Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma n�o vier com um objeto muzzle)
     [SerializeField] private Transform bulletProjectile; //Objeto da balita
     private float timeSinceLastShot;
-    private BulletPool _pool;
 
     void Start()
     {
-        _pool = FindObjectOfType<BulletPool>(); //Acha um objeto com essa classe (magia negra)
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
         PlayerLook.aimingInput += Aim;
@@ -66,7 +65,7 @@ public class Gun : MonoBehaviour
         //Debug.DrawRay(bullet.position, muzzleDirection*10,Color.blue);
         //Usando um game object pool, com as balas
 
-        GameObject bullet = _pool.GetBullet();
+        GameObject bullet = bulletPool.GetPooledObject();
 
         bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); //Seta o dano dessa balita
         bullet.transform.position = muzzle.position; //Bota a bala na posi��o certa
