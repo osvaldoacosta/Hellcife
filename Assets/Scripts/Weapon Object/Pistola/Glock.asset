@@ -17,7 +17,7 @@ MonoBehaviour:
   maxDistance: 50
   isAutomatic: 0
   wasShot: 0
-  currentAmmo: 15
+  currentAmmo: 8
   magSize: 15
   roundsPerMinute: 550
   reloadTime: 3

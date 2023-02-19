@@ -22,7 +22,7 @@ public class GooProjectileShooter : MonoBehaviour
     float gooPuddleRadius,
     float gooPuddleDuration){
         //get projectile from object pool
-        GameObject newGooProjectile= gooProjectileObjectPool.GetComponent<ObjectPool>().GetPooledObject(); 
+        GameObject newGooProjectile = gooProjectileObjectPool.GetComponent<ObjectPool>().GetPooledObject(); 
         if (newGooProjectile != null) {
             newGooProjectile.transform.position = transform.position;
             newGooProjectile.transform.rotation = transform.rotation;

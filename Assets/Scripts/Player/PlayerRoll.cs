@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CharacterRoll : MonoBehaviour
+public class PlayerRoll : MonoBehaviour
 {
     public float rollForce = 500f;
 
