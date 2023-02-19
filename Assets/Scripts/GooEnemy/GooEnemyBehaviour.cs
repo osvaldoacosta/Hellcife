@@ -71,7 +71,6 @@ public class GooEnemyBehaviour : MonoBehaviour
                     gooAttack();
                     activeEnemyState= EnemyStates.finishingAttack;
                     return;
-                    break;
                 case EnemyStates.finishingAttack:
                     if( Time.time < endOfAttack ){
                         //silly attack animation for debug purposes
@@ -96,7 +95,6 @@ public class GooEnemyBehaviour : MonoBehaviour
             case EnemyStates.windingUpAttack:
             case EnemyStates.finishingAttack:
                 return true;
-                break;
             default:
                 return false;
         }
@@ -160,6 +158,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
+
     private void decideActiveState(){
         switch(activeEnemyState){
             default:
@@ -190,12 +189,12 @@ public class GooEnemyBehaviour : MonoBehaviour
                 }
         }
     }
+
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:
                 beIdle();
                 return;
-                break;
             case EnemyStates.following:
                 followTarget();
                 break;
