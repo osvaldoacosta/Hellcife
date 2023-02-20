@@ -29,8 +29,9 @@ public class Bullet : MonoBehaviour
             if (points != null)
             {
                 points.GainPoints(15); //Setar lógica de como vai ganhar diferentes pontos
+                Debug.Log("Player points: " + points.GetPoints());
             }
-            Debug.Log("Player points: "+points.GetPoints());
+            
         }
 
         Disable();
