@@ -21,6 +21,11 @@ public class Gun : MonoBehaviour
         timeSinceLastShot = 0f;
     }
 
+    public GunInfo GetGunInfo()
+    {
+        return gunInfo;
+    }
+
     private void Aim(bool isAiming) => gunInfo.isAiming = isAiming;
 
     private bool CanShoot() => !gunInfo.isReloading && timeSinceLastShot > 1f / (gunInfo.roundsPerMinute/60) && gunInfo.isAiming ;

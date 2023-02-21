@@ -19,6 +19,10 @@ public class PlayerGunInventory : MonoBehaviour
     {
         carryingSize++;
     }
+    public Gun GetCurrentGun()
+    {
+        return guns[currentWeaponIndex];
+    }
     // Start is called before the first frame update
     void Start()
     {
