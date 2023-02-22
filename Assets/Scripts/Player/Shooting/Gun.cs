@@ -78,9 +78,10 @@ public class Gun : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 30f; //Fazer algum calculo doido para velocidade da bala
         bullet.SetActive(true);
         
-        
         gunInfo.currentAmmo -= 1;
         timeSinceLastShot = 0f;
+
+
     }
 
     // Update is called once per frame
