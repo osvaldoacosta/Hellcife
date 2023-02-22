@@ -12,10 +12,13 @@ public class PlayerStartScript : MonoBehaviour
         //Vida
         //gameObject.GetComponent<Target>().SetMaxHealth(100f);
         //Arma inicial
-        gameObject.GetComponent<PlayerGunInventory>().guns.Add(defaultWeapon.GetComponent<Gun>());
-        
-        //Qtd de Itens
+        Gun gun = defaultWeapon.GetComponent<Gun>();
 
+        gameObject.GetComponent<PlayerGunInventory>().guns.Add(gun);
+        // gameObject.GetComponent<PlayerHudController>().InitialWeaponChange(gun.GetGunInfo()); 
+        //Qtd de Itens
+        
+        
         //EtC
     }
 
