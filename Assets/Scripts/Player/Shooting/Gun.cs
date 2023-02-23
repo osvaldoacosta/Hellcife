@@ -21,6 +21,11 @@ public class Gun : MonoBehaviour
         timeSinceLastShot = 0f;
     }
 
+    public GunInfo GetGunInfo()
+    {
+        return gunInfo;
+    }
+
     private void Aim(bool isAiming) => gunInfo.isAiming = isAiming;
 
     private bool CanShoot() => !gunInfo.isReloading && timeSinceLastShot > 1f / (gunInfo.roundsPerMinute/60) && gunInfo.isAiming ;
@@ -73,9 +78,10 @@ public class Gun : MonoBehaviour
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 30f; //Fazer algum calculo doido para velocidade da bala
         bullet.SetActive(true);
         
-        
         gunInfo.currentAmmo -= 1;
         timeSinceLastShot = 0f;
+
+
     }
 
     // Update is called once per frame
