@@ -30,12 +30,9 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput =  Input.GetAxis("Horizontal");
     float verticalInput = Input.GetAxis("Vertical");
 
-        //Não da pra usar switch pois esse input vai de 0 até 1, incrementando aos poucos, se fosse de 0 a 1 direto daria pra fazer
-    
+    //the total input is the hypotenuse of both vertical and horizontal.
+    float totalInput = (float) Sqrt((Pow(horizontalInput, 2) +  Pow(verticalInput, 2)));
 
-
-        //the total input is the hypotenuse of both vertical and horizontal.
-    float totalInput = (float) System.Math.Sqrt((System.Math.Pow(horizontalInput, 2) +  System.Math.Pow(verticalInput, 2)));
     
     // Limiting the total input to be of the same magnitude (-1<=x<=1)
     if( totalInput > 1f){

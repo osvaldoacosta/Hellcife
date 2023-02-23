@@ -160,34 +160,32 @@ public class GooEnemyBehaviour : MonoBehaviour
     }
 
     private void decideActiveState(){
-        switch(activeEnemyState){
-            default:
-                if(!ableToSeeSorroundings){
-                    activeEnemyState= EnemyStates.idle;
+        if(!ableToSeeSorroundings){
+            activeEnemyState= EnemyStates.idle;
+            return;
+        } else {
+            //Check if the enemy vision to the target is obstructed
+            if(visionIsObstructed()){
+                activeEnemyState= EnemyStates.following;
+                return;
+            } else {
+                if(isTargetTooClose()){
+                    activeEnemyState= EnemyStates.panicking;
+                    return;
+                } else if(isTargetInAttackRange()){
+                    if(Time.time < endOfAttackCooldown){
+                        activeEnemyState= EnemyStates.idle;
+                    } else {
+                        activeEnemyState= EnemyStates.windingUpAttack;
+                    }
                     return;
                 } else {
-                    //Check if the enemy vision to the target is obstructed
-                    if(visionIsObstructed()){
-                        activeEnemyState= EnemyStates.following;
-                        return;
-                    } else {
-                        if(isTargetTooClose()){
-                            activeEnemyState= EnemyStates.panicking;
-                            return;
-                        } else if(isTargetInAttackRange()){
-                            if(Time.time < endOfAttackCooldown){
-                                activeEnemyState= EnemyStates.idle;
-                            } else {
-                                activeEnemyState= EnemyStates.windingUpAttack;
-                            }
-                            return;
-                        } else {
-                            activeEnemyState= EnemyStates.following;
-                            return;
-                        }
-                    }
+                    activeEnemyState= EnemyStates.following;
+                    return;
                 }
+            }
         }
+        
     }
 
     private void enemyAction(){
@@ -204,8 +202,6 @@ public class GooEnemyBehaviour : MonoBehaviour
             case EnemyStates.windingUpAttack:
                 startAttackWindup();
                 break;
-            default:
-                return;
         }
     }
     private void gooAttack(){

@@ -4,7 +4,8 @@ using UnityEngine;
 using static System.Math;
 
 public class GooProjectileBehaviour : MonoBehaviour
-{   
+{
+    
     private bool isBeingLaunched=false;
 
     private Vector3 startingPoint;
@@ -87,6 +88,15 @@ public class GooProjectileBehaviour : MonoBehaviour
             newGooPuddle.transform.rotation = transform.rotation;
             newGooPuddle.GetComponent<GooPuddleBehaviour>().setGooPuddle(gooPuddleDuration, gooPuddleRadius);
             newGooPuddle.SetActive(true);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        IDamageable damageable = other.GetComponent<IDamageable>(); //checa se o objeto que colidiu possui a interface do IDamageable
+        if(damageable != null && other.tag == "Player")
+        {
+            damageable.TakeDamage(10); //Aumentar o dano da goo, quando a wave aumentar, por enquanto será 10 de dano por hit
         }
     }
 }
