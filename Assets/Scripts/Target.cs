@@ -5,13 +5,20 @@ using UnityEngine;
 public class Target : MonoBehaviour, IDamageable
 {
     [SerializeField] private float current_health;
-    
+    private float max_health;
 
+    void Start()
+    {
+        max_health = 100;
+    }
     public float GetHealth()
     {
         return current_health;
     }
-
+    public void SetMaxHealth(float health)
+    {
+        this.max_health = health;
+    }
     public void TakeDamage(float damage)
     {
         current_health -= damage;
@@ -23,7 +30,10 @@ public class Target : MonoBehaviour, IDamageable
     //Usado para qd tiver curas por exemplo
     public void Heal(float heal)
     {
-        current_health += heal;
+        if(heal+current_health <= max_health)
+        {
+            current_health += heal;
+        }
     }
     public bool IsDead()
     {

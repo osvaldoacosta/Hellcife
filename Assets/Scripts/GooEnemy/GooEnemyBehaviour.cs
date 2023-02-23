@@ -158,6 +158,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
+
     private void decideActiveState(){
         if(!ableToSeeSorroundings){
             activeEnemyState= EnemyStates.idle;
@@ -186,6 +187,7 @@ public class GooEnemyBehaviour : MonoBehaviour
         }
         
     }
+
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:

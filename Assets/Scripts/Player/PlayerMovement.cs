@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static System.Math;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,8 +29,18 @@ public class PlayerMovement : MonoBehaviour
   {
     float horizontalInput =  Input.GetAxis("Horizontal");
     float verticalInput = Input.GetAxis("Vertical");
+<<<<<<< HEAD
     //the total input is the hypotenuse of both vertical and horizontal.
     float totalInput = (float) Sqrt((Pow(horizontalInput, 2) +  Pow(verticalInput, 2)));
+=======
+
+        //Não da pra usar switch pois esse input vai de 0 até 1, incrementando aos poucos, se fosse de 0 a 1 direto daria pra fazer
+    
+
+
+        //the total input is the hypotenuse of both vertical and horizontal.
+    float totalInput = (float) System.Math.Sqrt((System.Math.Pow(horizontalInput, 2) +  System.Math.Pow(verticalInput, 2)));
+>>>>>>> feature/player_inventory
     
     // Limiting the total input to be of the same magnitude (-1<=x<=1)
     if( totalInput > 1f){
@@ -36,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     movementDirection = new Vector3(horizontalInput, 0f, verticalInput);
+    //Rotate player based on it's inputs
+    rotatePlayer(movementDirection.normalized);
 
     //Appling aiming and goo puddle debuffs
     movementSpeed= defaultMovementSpeed;
@@ -49,9 +64,20 @@ public class PlayerMovement : MonoBehaviour
       movementSpeed= 0f;
     }
   }
-  void FixedUpdate(){
+   void FixedUpdate()
+   {
     movePlayer(movementDirection);
-  }
+   }
+   void rotatePlayer(Vector3 movementDirectionNorma)
+    {
+        if (movementDirectionNorma != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(movementDirectionNorma);
+        }
+    }
+
+    
+
 
 
   public void setSpeed(float speed){
