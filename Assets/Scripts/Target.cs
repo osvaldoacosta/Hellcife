@@ -29,7 +29,7 @@ public class Target : MonoBehaviour, IDamageable
     {
         if (current_health <= 0)
         {
-            Destroy(gameObject); //Quando for fazer o object pool dos inimigos, desativar inves de destruir
+            gameObject.SetActive(false);
             return true;
         }
         return false;
