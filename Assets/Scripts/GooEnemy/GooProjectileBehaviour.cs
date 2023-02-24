@@ -35,6 +35,9 @@ public class GooProjectileBehaviour : MonoBehaviour
     private GameObject newGooPuddle;
 
     // Update is called once per frame
+    void Start(){
+        gooPuddleObjectPool= GameObject.FindWithTag("GooPuddleObjectPool");
+    }
     void Update()
     {
         if(isBeingLaunched){

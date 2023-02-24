@@ -7,6 +7,7 @@ public class GooProjectileShooter : MonoBehaviour
     public GameObject gooProjectileObjectPool;
     void Start()
     {
+        gooProjectileObjectPool = GameObject.FindWithTag("GooProjectileObjectPool");
         return;
     }
 

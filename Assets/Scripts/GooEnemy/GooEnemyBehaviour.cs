@@ -53,6 +53,10 @@ public class GooEnemyBehaviour : MonoBehaviour
     public float gooPuddleRadius = 3f;
     public float gooPuddleDuration = 5f;
 
+    public void Start(){
+        target= GameObject.FindWithTag("Player");
+    }
+
     // Update is called once per frame
     void Update()
     {

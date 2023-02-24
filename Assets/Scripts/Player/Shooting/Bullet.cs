@@ -25,12 +25,13 @@ public class Bullet : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
-            PlayerPoints points = GameObject.FindWithTag("Player").GetComponent<PlayerPoints>(); //Utilizar um jeito método dps, referenciar o player pra cada bala ficará pesado, talvez enum?
+            /*PlayerPoints points = GameObject.FindWithTag("Player").GetComponent<PlayerPoints>(); //Utilizar um jeito mï¿½todo dps, referenciar o player pra cada bala ficarï¿½ pesado, talvez enum?
             if (points != null)
             {
-                points.GainPoints(15); //Setar lógica de como vai ganhar diferentes pontos
+                points.GainPoints(15); //Setar lï¿½gica de como vai ganhar diferentes pontos
             }
             Debug.Log("Player points: "+points.GetPoints());
+            */
         }
 
         Disable();

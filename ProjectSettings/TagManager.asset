@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - GooPuddle
+  - GooPuddleObjectPool
+  - GooProjectileObjectPool
+  - GooEnemyObjectPool
+  - Portal
+  - MeleeEnemyObjectPool
   layers:
   - Default
   - TransparentFX

@@ -9,57 +9,163 @@ public class MeleeEnemyBehaviour : MonoBehaviour
     public GameObject target;
     
     //TO-DO: ATTACK MECHANICS
+    AttackHitbox attackHitbox;
     public float attackRange= 2f;
     public int attackDamage= 5;
-    public float attackWindupDuration= 0.2f;
-    public float attackAnimationLockTotalDuration= 0.5f;
 
+    //attack durations
+    public float attackFinishingDuration= 5.0f;
+    public float attackWindupDuration= 0.3f;
+    public float attackCooldownDuration= 1.0f;
+    public float attackActiveTime= 0.1f;
+
+    //end of cooldowns
+    private float endOfAttackWindup = -1f;
+    private float endOfAttack= -1f;
+    private float endOfAttackCooldown= -1f;
+
+    //distances and vectors
     private Vector3 enemyCoord;
     private Vector3 targetCoord;
     private Vector3 distanceFromTargetVector;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Acquire all necessary cords and distances
-        if(!acquireSelfCoordsAndTargetCoords()){
-            return;
-        }
-        calculateDistanceVector();
-
-        //Decide what to do based on the distance form target
-        if(isTargetInAttackRange()){
-            meleeAttack();
-        } else {
-            followTarget();
-        }
+    //all possible enemy states
+    public enum EnemyStates{
+        idle = 0,
+        following = 1,
+        windingUpAttack = 2,
+        finishingAttack = 3
     }
 
-    private bool acquireSelfCoordsAndTargetCoords(){
-        if(Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), out var enemyHitInfo)){
+    [SerializeField] private EnemyStates activeEnemyState= 0;
+    
+    private bool ableToSeeSorroundings;
+
+    // Update is called once per frame
+    void Start(){
+        enemyNavMeshAgent= GetComponent<NavMeshAgent>();
+        target= GameObject.FindWithTag("Player");
+        attackHitbox= GetComponentInChildren<AttackHitbox>(true);
+    }
+    void Update()
+    {
+        if(isActionLocked()){
+            switch (activeEnemyState){
+                case EnemyStates.windingUpAttack:
+                    if(Time.time< endOfAttackWindup){
+                        return;
+                    }
+                    meleeAttack();
+                    activeEnemyState= EnemyStates.finishingAttack;
+                    return;
+                case EnemyStates.finishingAttack:
+                    if( Time.time < endOfAttack ){
+                        //silly attack animation for debug purposes
+                        transform.localScale= new Vector3(0.8f, 1.2f, 0.8f);
+                        return;
+                    }
+                    //silly attack animation for debug purposes
+                    transform.localScale= new Vector3(1f, 1f, 1f);
+                    break;
+                default:
+                    break;
+            }
+        }
+        acquireSelfCoordsAndTargetCoords();
+        decideActiveState();
+        enemyAction();
+    }
+    private bool isActionLocked(){
+        switch (activeEnemyState){
+            case EnemyStates.windingUpAttack:
+            case EnemyStates.finishingAttack:
+                return true;
+            default:
+                return false;
+        }
+    }
+    private void acquireSelfCoordsAndTargetCoords(){
+        if(Physics.Raycast(transform.position, new Vector3(0f, -1f, 0f), out var enemyHitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             enemyCoord = enemyHitInfo.point;
+            ableToSeeSorroundings= true;
         } else {
-            return false;
+            ableToSeeSorroundings= false;
         }
-        if(Physics.Raycast(target.transform.position, new Vector3(0f, -1f, 0f), out var hitInfo)){
+        if(Physics.Raycast(target.transform.position, new Vector3(0f, -1f, 0f), out var hitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             targetCoord = hitInfo.point;
-            return true;
+            ableToSeeSorroundings= true;
         } else {
-            return false;
+            ableToSeeSorroundings= false;
         }
+    }
+    private void decideActiveState(){
+        switch(activeEnemyState){
+            default:
+                if(!ableToSeeSorroundings){
+                    activeEnemyState= EnemyStates.idle;
+                    return;
+                } else {
+                if(isTargetInAttackRange()){
+                    if(Time.time < endOfAttackCooldown){
+                        activeEnemyState= EnemyStates.idle;
+                    } else {
+                        activeEnemyState= EnemyStates.windingUpAttack;
+                    }
+                    return;
+                } else {
+                    activeEnemyState= EnemyStates.following;
+                    return;
+                }
+                }
+        }
+    }
+    private void enemyAction(){
+        switch (activeEnemyState){
+            case EnemyStates.idle:
+                beIdle();
+                return;
+            case EnemyStates.following:
+                followTarget();
+                break;
+            case EnemyStates.windingUpAttack:
+                startAttackWindup();
+                break;
+            default:
+                return;
+        }
+    }
+    private void beIdle(){
+        //stop in place
+        enemyNavMeshAgent.SetDestination(enemyCoord);
+    }
+    private void followTarget(){
+        enemyNavMeshAgent.SetDestination(targetCoord);
+    }
+    private void startAttackWindup(){
+        enemyNavMeshAgent.SetDestination(enemyCoord);
+        //silly attack animation for debug purposes
+        transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
+        endOfAttackWindup= Time.time + attackWindupDuration;
     }
     private void calculateDistanceVector(){
         distanceFromTargetVector = enemyCoord - targetCoord;
         distanceFromTargetVector.y= 0f;
     }
     private void meleeAttack(){
+        //silly attack animation for debug purposes
+        transform.localScale= new Vector3(1f, 1f, 1f);
+        //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
-        return;
-    }
-    private void followTarget(){
-        enemyNavMeshAgent.SetDestination(targetCoord);
+
+        acquireSelfCoordsAndTargetCoords();
+
+        attackHitbox.checkHitAndDealDamage(attackDamage, attackActiveTime);
+        //update the attack animation cooldown and attack cooldown
+        endOfAttack= Time.time + attackFinishingDuration;
+        endOfAttackCooldown= Time.time + attackCooldownDuration;
     }
     private bool isTargetInAttackRange(){
+        calculateDistanceVector();
         return (distanceFromTargetVector.magnitude < attackRange);
     }
 }
