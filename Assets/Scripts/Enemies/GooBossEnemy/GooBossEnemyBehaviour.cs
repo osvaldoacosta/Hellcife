@@ -9,12 +9,10 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     public GameObject target;
 
     //ranges
-    public float panicRange= 7f;
+    public float selfPuddleAttackRange= 5f;
     public float attackRange= 9f;
-    public float panicRunDistance= 3f;
     
     //cooldown times
-    public float panicDuration= 1.5f;
     public float attackFinishingDuration= 2.0f;
     public float attackWindupDuration= 0.8f;
     public float attackCooldownDuration= 5.0f;
@@ -23,7 +21,6 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     private float endOfAttackWindup = -1f;
     private float endOfAttack= -1f;
     private float endOfAttackCooldown= -1f;
-    private float endOfPanic= -1f;
 
     //distances and vectors
     private Vector3 enemyCoord;
@@ -45,6 +42,7 @@ public class GooBossEnemyBehaviour : MonoBehaviour
 
     //This enemy shoots projectiles, so there is a special handler
     [SerializeField] GooBossProjectileShooter gooProjectileShooter;
+    [SerializeField] public GameObject gooPuddleObjectPool;
     
     //The "goo" attack is shot in a parabola and its parameters can me modified here
     //parabolaMaxHeight is purely aesthetic
@@ -55,6 +53,8 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     public float gooProjectileAirTime= 1.5f;
     public float gooPuddleRadius = 5f;
     public float gooPuddleDuration = 5f;
+    public float selfGooPuddleRadius = 8f;
+    public float selfGooPuddleDuration= 6f;
     
 
 
@@ -63,12 +63,6 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     {
         if(isActionLocked()){
             switch (activeEnemyState){
-                case EnemyStates.panicking:
-                    if( Time.time < endOfPanic ){
-                        fleeFromTarget();
-                        return;
-                    }
-                    break;
                 case EnemyStates.windingUpAttack:
                     if(Time.time< endOfAttackWindup){
                         return;
@@ -118,6 +112,15 @@ public class GooBossEnemyBehaviour : MonoBehaviour
             ableToSeeSorroundings= false;
         }
     }
+    private void createGooPuddle(Vector3 gooPuddleCoord, float gooPuddleRadius, float gooPuddleDuration){
+        GameObject newGooPuddle= gooPuddleObjectPool.GetComponent<ObjectPool>().GetPooledObject(); 
+        if (newGooPuddle != null) {
+            newGooPuddle.transform.position = gooPuddleCoord;
+            newGooPuddle.transform.rotation = transform.rotation;
+            newGooPuddle.GetComponent<GooPuddleBehaviour>().setGooPuddle(gooPuddleDuration, gooPuddleRadius);
+            newGooPuddle.SetActive(true);
+        }
+    }
     private void calculateHorizontalDistanceFromTargetAsVector(){
         horizontalDistanceFromTargetVector= enemyCoord - targetCoord;
         horizontalDistanceFromTargetVector.y= 0f;
@@ -131,15 +134,11 @@ public class GooBossEnemyBehaviour : MonoBehaviour
             return false;
         }
     }
-    private bool isTargetTooClose(){
-        return (horizontalDistanceFromTargetVector.magnitude < panicRange);
-    }
     private bool isTargetInAttackRange(){
         return (horizontalDistanceFromTargetVector.magnitude < attackRange);
     }
-    private void calculatePanicRunDestination(){
-        calculateHorizontalDistanceFromTargetAsVector();
-        panicRunDestination= enemyCoord + (horizontalDistanceFromTargetVector.normalized * panicRunDistance);
+    private bool isTargetInSelfPuddleAttackRange(){
+        return (horizontalDistanceFromTargetVector.magnitude < selfPuddleAttackRange);
     }
     private void beIdle(){
         //stop in place
@@ -147,15 +146,6 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     }
     private void followTarget(){
         enemyNavMeshAgent.SetDestination(targetCoord);
-    }
-    private void fleeFromTarget(){
-        acquireSelfCoordsAndTargetCoords();
-        calculatePanicRunDestination();
-        enemyNavMeshAgent.SetDestination(panicRunDestination);
-    }
-    private void panic(){
-        fleeFromTarget();
-        endOfPanic = Time.time + panicDuration;
     }
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
@@ -174,10 +164,7 @@ public class GooBossEnemyBehaviour : MonoBehaviour
                 activeEnemyState= EnemyStates.following;
                 return;
             } else {
-                if(isTargetTooClose()){
-                    activeEnemyState= EnemyStates.panicking;
-                    return;
-                } else if(isTargetInAttackRange()){
+                if(isTargetInAttackRange()){
                     if(Time.time < endOfAttackCooldown){
                         activeEnemyState= EnemyStates.idle;
                     } else {
@@ -201,9 +188,6 @@ public class GooBossEnemyBehaviour : MonoBehaviour
             case EnemyStates.following:
                 followTarget();
                 break;
-            case EnemyStates.panicking:
-                panic();
-                break;
             case EnemyStates.windingUpAttack:
                 startAttackWindup();
                 break;
@@ -214,8 +198,14 @@ public class GooBossEnemyBehaviour : MonoBehaviour
         transform.localScale= new Vector3(2f, 2f, 2f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
-
         acquireSelfCoordsAndTargetCoords();
+
+        if(isTargetInSelfPuddleAttackRange()){
+            createGooPuddle(enemyCoord, selfGooPuddleRadius, selfGooPuddleDuration);
+            endOfAttack= Time.time + attackFinishingDuration;
+            endOfAttackCooldown= Time.time + attackCooldownDuration;
+            return;
+        }
 
         Vector3 launchPoint = gooProjectileShooter.transform.position;
         Vector3 gooProjectileLandingCoord = new Vector3(targetCoord.x, targetCoord.y, targetCoord.z);

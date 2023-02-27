@@ -2376,20 +2376,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyNavMeshAgent: {fileID: 731893953}
   target: {fileID: 454635387}
-  panicRange: 7
+  selfPuddleAttackRange: 7
   attackRange: 12
-  panicRunDistance: 3
-  panicDuration: 1.5
   attackFinishingDuration: 2
   attackWindupDuration: 1.2
   attackCooldownDuration: 3
   activeEnemyState: 0
   gooProjectileShooter: {fileID: 1023820328}
+  gooPuddleObjectPool: {fileID: 1072031757}
   numberOfProjectilesPerAttack: 5
   gooShotImprecision: 5
   gooProjectileAirTime: 1
   gooPuddleRadius: 7
   gooPuddleDuration: 5
+  selfGooPuddleRadius: 15
+  selfGooPuddleDuration: 6
 --- !u!114 &731893952
 MonoBehaviour:
   m_ObjectHideFlags: 0
