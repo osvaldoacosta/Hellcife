@@ -6073,6 +6073,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4058017755914470935, guid: 2a4924704230c2e40a058313de683022,
+        type: 3}
+      propertyPath: m_Speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4058017755914470936, guid: 2a4924704230c2e40a058313de683022,
         type: 3}
       propertyPath: target
@@ -6081,7 +6086,7 @@ PrefabInstance:
     - target: {fileID: 4058017755914470936, guid: 2a4924704230c2e40a058313de683022,
         type: 3}
       propertyPath: attackActiveTime
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4058017755914470936, guid: 2a4924704230c2e40a058313de683022,
         type: 3}
