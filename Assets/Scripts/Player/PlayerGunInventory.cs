@@ -13,9 +13,9 @@ public class PlayerGunInventory : MonoBehaviour
 
     void Start()
     {
-        guns = new List<Gun>();
         currentWeaponIndex = 0;
         carryingSize = 2;
+        EquipWeapon();
     }
 
     // Update is called once per frame
