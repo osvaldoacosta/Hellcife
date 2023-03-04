@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 8990190282352004303}
   - component: {fileID: 8071501416861281771}
   - component: {fileID: 7327632947544823179}
+  - component: {fileID: 2942618847221591647}
   m_Layer: 0
   m_Name: ExplosionHitbox
   m_TagString: Untagged
@@ -255,3 +256,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+--- !u!135 &2942618847221591647
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353741662727679865}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
