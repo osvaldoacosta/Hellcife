@@ -42,10 +42,23 @@ public class Gun : MonoBehaviour
         if (gunInfo.isReloading == false)
         {
             gunInfo.isReloading = true;
-            yield return new WaitForSeconds(gunInfo.reloadTime); //Espera o reload acabar
-
-            gunInfo.currentAmmo = gunInfo.magSize;
+            if (gunInfo.isMagReloaded)
+            {
+                yield return new WaitForSeconds(gunInfo.reloadTime); //Espera o reload acabar
+                gunInfo.currentAmmo = gunInfo.magSize;
+            }
+            else
+            {
+                int bulletsToReload = gunInfo.magSize - gunInfo.currentAmmo;
+                float timeToPutOneAmmo = gunInfo.reloadTime / gunInfo.magSize;
+                for (int i = 0; i < bulletsToReload; i++)
+                {
+                    yield return new WaitForSeconds(timeToPutOneAmmo);
+                    gunInfo.currentAmmo = gunInfo.currentAmmo + 1;
+                }
+            }
             gunInfo.isReloading = false;
+                
         }
 
     }

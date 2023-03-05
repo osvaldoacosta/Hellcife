@@ -18,7 +18,7 @@ public class GunInfo : ScriptableObject
     public int magSize;
     public float roundsPerMinute;
     public float reloadTime;
-
+    public bool isMagReloaded;
     public bool isReloading;
     public bool isAiming;
     
