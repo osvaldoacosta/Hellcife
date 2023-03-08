@@ -7,13 +7,23 @@ public class PlayerPoints: MonoBehaviour
     private ulong points;
     void Start()
     {
-        points= 0;
+        points= 100;
     }
 
     public void GainPoints(ulong points)
     {
         this.points += points; 
     }
+
+    public void SetPoints()
+    {
+        Debug.Log("ponto = " + points);
+    }
+
+    public void RemovePoints(ulong points)
+    {
+        this.points -= points;
+    } 
 
     public ulong GetPoints()
     {
