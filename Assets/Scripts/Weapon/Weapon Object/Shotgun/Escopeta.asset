@@ -21,5 +21,6 @@ MonoBehaviour:
   magSize: 6
   roundsPerMinute: 120
   reloadTime: 4
+  isMagReloaded: 0
   isReloading: 0
   isAiming: 0
