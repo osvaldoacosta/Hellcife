@@ -64,11 +64,11 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
                 case EnemyStates.finishingAttack:
                     if( Time.time < endOfAttack ){
                         //silly attack animation for debug purposes
-                        transform.localScale= new Vector3(0.8f, 1.2f, 0.8f);
+                        //transform.localScale= new Vector3(0.8f, 1.2f, 0.8f);
                         return;
                     }
                     //silly attack animation for debug purposes
-                    transform.localScale= new Vector3(1f, 1f, 1f);
+                    //transform.localScale= new Vector3(1f, 1f, 1f);
                     gameObject.SetActive(false);
                     return;
                     break;
@@ -149,7 +149,7 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
         //silly attack animation for debug purposes
-        transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
+        //transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
     private void calculateDistanceVector(){
@@ -158,7 +158,7 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
     }
     private void explosiveAttack(){
         //silly attack animation for debug purposes
-        transform.localScale= new Vector3(1f, 1f, 1f);
+        //transform.localScale= new Vector3(1f, 1f, 1f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 
