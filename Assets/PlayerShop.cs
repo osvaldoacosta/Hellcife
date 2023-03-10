@@ -47,7 +47,7 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock0Slot1(Gun gun)
     {
         BuyAmmo0.interactable = false;
-        DisableAmmo(listgun.guns[0]);
+        EnableAmmo(listgun.guns[0]);
         listgun.guns.RemoveAt(0);
         listgun.guns.Insert(0, gun);
     }
@@ -55,7 +55,7 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock0Slot2(Gun gun)
     {
         BuyAmmo0.interactable = false;
-        DisableAmmo(listgun.guns[1]);
+        EnableAmmo(listgun.guns[1]);
         listgun.guns.RemoveAt(1);
         listgun.guns.Insert(1, gun);
     }
@@ -82,7 +82,7 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock1Slot1(Gun gun)
     {
         BuyAmmo1.interactable = false;
-        DisableAmmo(listgun.guns[0]);
+        EnableAmmo(listgun.guns[0]);
         listgun.guns.RemoveAt(0);
         listgun.guns.Insert(0, gun);
     }
@@ -90,7 +90,7 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock1Slot2(Gun gun)
     {
         BuyAmmo1.interactable = false;
-        DisableAmmo(listgun.guns[1]);
+        EnableAmmo(listgun.guns[1]);
         listgun.guns.RemoveAt(1);
         listgun.guns.Insert(1, gun);
     }
@@ -117,7 +117,7 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock2Slot1(Gun gun)
     {
         BuyAmmo2.interactable = false;
-        DisableAmmo(listgun.guns[0]);
+        EnableAmmo(listgun.guns[0]);
         listgun.guns.RemoveAt(0);
         listgun.guns.Insert(0, gun);
     }
@@ -125,25 +125,28 @@ public class PlayerShop : MonoBehaviour
     public void EquipGlock2Slot2(Gun gun)
     {
         BuyAmmo2.interactable = false;
-        DisableAmmo(listgun.guns[1]);
+        EnableAmmo(listgun.guns[1]);
         listgun.guns.RemoveAt(1);
         listgun.guns.Insert(1, gun);
     }
 
-    public void DisableAmmo(Gun gun)
+    public void EnableAmmo(Gun gun)
     {
 
         if (gun.name == "glock_fix")
         {
             BuyAmmo0.interactable = true;
+            glock0.SetActive(false);
         }
         else if (gun.name == "glock_fixsaaaa")
         {
             BuyAmmo1.interactable = true;
+            glock1.SetActive(false);
         }
         else if (gun.name == "glock_fixkkkk")
         {
             BuyAmmo2.interactable = true;
+            glock2.SetActive(false);
         }
     }
 }

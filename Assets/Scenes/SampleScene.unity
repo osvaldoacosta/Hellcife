@@ -404,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &124605176
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultWeapon: {fileID: 919132147631679114}
-  defaultWeapon2: {fileID: 2007825789}
 --- !u!114 &454635402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,7 +3076,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 182533573}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -7872,7 +7871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1919191796
 Transform:
   m_ObjectHideFlags: 0
@@ -8210,7 +8209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2007825790
 Transform:
   m_ObjectHideFlags: 0
