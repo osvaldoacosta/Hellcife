@@ -3,6 +3,7 @@ using UnityEngine;
 public class ProximityDetector : MonoBehaviour
 {
     public GameObject objectToDetect;
+    public GameObject loja;
     public GameObject Texto;
     public float proximityThreshold = 2f;
 
@@ -18,13 +19,16 @@ public class ProximityDetector : MonoBehaviour
         float distance = Vector3.Distance(transform.position, objectToDetect.transform.position);
         if (distance < proximityThreshold)
         {
-            renderer.material.color = Color.red;
             Texto.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                loja.SetActive(true);
+            }
         }
         else
         {
-            renderer.material.color = Color.white;
             Texto.SetActive(false);
+            loja.SetActive(false);
         }
     }
 }

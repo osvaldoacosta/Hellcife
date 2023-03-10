@@ -21,7 +21,6 @@ public class PlayerGunInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("currentWeapon: "+ guns[currentWeaponIndex]);
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeaponIndex = 0;
