@@ -20,4 +20,8 @@ public class PlayerPoints: MonoBehaviour
         return points;
     }
 
+    public void LosePoints(ulong points)
+    {
+        this.points -= points;
+    }
 }
