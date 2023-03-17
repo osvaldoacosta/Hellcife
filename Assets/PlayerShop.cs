@@ -44,20 +44,23 @@ public class PlayerShop : MonoBehaviour
         }
     }
 
+    public void Ammo(Button buyAmmo, int index)
+    {
+        buyAmmo.interactable = false;
+        /*EnableAmmo(listgun.guns[index]);
+        listgun.guns.RemoveAt(index);
+        listgun.guns.Insert(index, gun);*/
+        index = 1;
+    }
+
     public void EquipGlock0Slot1(Gun gun)
     {
-        BuyAmmo0.interactable = false;
-        EnableAmmo(listgun.guns[0]);
-        listgun.guns.RemoveAt(0);
-        listgun.guns.Insert(0, gun);
+        Ammo(BuyAmmo0, 0);
     }
 
     public void EquipGlock0Slot2(Gun gun)
     {
-        BuyAmmo0.interactable = false;
-        EnableAmmo(listgun.guns[1]);
-        listgun.guns.RemoveAt(1);
-        listgun.guns.Insert(1, gun);
+        Ammo(BuyAmmo0, 1);
     }
 
     public void BuyGlock1Buttom()

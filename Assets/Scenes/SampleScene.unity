@@ -3066,9 +3066,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 454635405}
+      - m_Target: {fileID: 454635387}
         m_TargetAssemblyTypeName: PlayerShop, Assembly-CSharp
-        m_MethodName: EquipGlock0Slot1
+        m_MethodName: 
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1310630582}
