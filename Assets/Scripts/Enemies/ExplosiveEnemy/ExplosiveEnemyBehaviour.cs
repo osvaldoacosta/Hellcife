@@ -38,11 +38,12 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
     }
 
     [SerializeField] private EnemyStates activeEnemyState= 0;
+    private Animator animator;
     
     private bool ableToSeeSorroundings;
 
-    // Update is called once per frame
     void Start(){
+        animator = GetComponent<Animator>();
         enemyNavMeshAgent= GetComponent<NavMeshAgent>();
         target= GameObject.FindWithTag("Player");
         attackHitbox= GetComponentInChildren<AttackHitbox>(true);
@@ -78,6 +79,7 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
         }
         acquireSelfCoordsAndTargetCoords();
         decideActiveState();
+        animateAction();
         enemyAction();
     }
     private bool isActionLocked(){
@@ -123,6 +125,9 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
                 }
                 }
         }
+    }
+    private void animateAction(){
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
     }
     private void enemyAction(){
         switch (activeEnemyState){
