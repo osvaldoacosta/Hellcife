@@ -30,7 +30,7 @@ public class PlayerShop : MonoBehaviour
         Gun gun0 = glock0.GetComponent<Gun>();
         if (points.GetPoints() >= 5)
         {
-            points.RemovePoints(5);
+            points.LosePoints(5);
             if (listgun.guns.Count == 1)
             {
                 listgun.guns.Add(gun0);
@@ -68,7 +68,7 @@ public class PlayerShop : MonoBehaviour
         Gun gun1 = glock1.GetComponent<Gun>();
         if (points.GetPoints() >= 5)
         {
-            points.RemovePoints(5);
+            points.LosePoints(5);
             if (listgun.guns.Count == 1)
             {
                 listgun.guns.Add(gun1);
@@ -103,7 +103,7 @@ public class PlayerShop : MonoBehaviour
         Gun gun2 = glock2.GetComponent<Gun>();
         if (points.GetPoints() >= 5)
         {
-            points.RemovePoints(5);
+            points.LosePoints(5);
             if (listgun.guns.Count == 1)
             {
                 BuyAmmo2.interactable = false;

@@ -14,10 +14,15 @@ public class PlayerPoints: MonoBehaviour
     {
         this.points += points; 
     }
+    public void LosePoints(ulong points)
+    {
+        this.points -= points;
+    }
 
     public ulong GetPoints()
     {
         return points;
     }
+    
 
 }
