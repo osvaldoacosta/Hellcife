@@ -7,6 +7,7 @@ public class GunInfo : ScriptableObject
 {
     [Header("Name")]
     public new string name;
+    public string description;
 
     [Header("Shooting")]
     public float damage;

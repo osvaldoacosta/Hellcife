@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CharqueTapioca
   m_EditorClassIdentifier: 
   name: Tapioca de charque
-  useLimit: 10
+  description: 
+  useLimit: 3
   valueToAdd: 50
+  price: 2500

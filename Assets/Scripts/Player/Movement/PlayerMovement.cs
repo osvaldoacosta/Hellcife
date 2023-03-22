@@ -18,8 +18,11 @@ public class PlayerMovement : MonoBehaviour
   public float aimingMovementSpeedDebuff = 1f;
   private Vector3 movementDirection;
 
-  // Start is called before the first frame update
-  void Start()
+
+
+    
+    // Start is called before the first frame update
+    void Start()
   {
     Debug.Log("Starting player movement");
     rb = this.GetComponent<Rigidbody>();
@@ -72,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-  public void setSpeed(float speed){
+  public void SetSpeed(float speed){
+    defaultMovementSpeed= speed;
     movementSpeed = speed;
   }
   private void movePlayer(Vector3 movementDirection){

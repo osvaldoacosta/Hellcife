@@ -2925,7 +2925,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 130356479}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1942499593}
+        m_TargetAssemblyTypeName: PowerUpUpgradeShop, Assembly-CSharp
+        m_MethodName: OnTapiocaButtonClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f54da175f7efc3948b9eaba53470e8fc,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TapiocaInfo, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &130356479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8802,6 +8815,7 @@ GameObject:
   - component: {fileID: 454635402}
   - component: {fileID: 454635403}
   - component: {fileID: 454635404}
+  - component: {fileID: 454635405}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9040,6 +9054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02151d6c57979d449f0b2af08f9de86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 10000
 --- !u!114 &454635404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9053,6 +9068,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   current_health: 100
+--- !u!114 &454635405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454635387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e315616d19c84abafa50b941b0b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461183449
 GameObject:
   m_ObjectHideFlags: 0
@@ -24214,7 +24241,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1279782303}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1942499593}
+        m_TargetAssemblyTypeName: PowerUpUpgradeShop, Assembly-CSharp
+        m_MethodName: OnTapiocaButtonClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 3894ac58e8ac90443ac5a912c997dd28,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TapiocaInfo, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1279782303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34247,7 +34287,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1862869466}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1942499593}
+        m_TargetAssemblyTypeName: PowerUpUpgradeShop, Assembly-CSharp
+        m_MethodName: OnTapiocaButtonClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: ea4b93199916e5148bafcdfde16b6eb3,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TapiocaInfo, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1862869466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35050,6 +35103,7 @@ GameObject:
   - component: {fileID: 1942499591}
   - component: {fileID: 1942499590}
   - component: {fileID: 1942499589}
+  - component: {fileID: 1942499593}
   m_Layer: 5
   m_Name: PlayerUpgrade
   m_TagString: Untagged
@@ -35134,6 +35188,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1536, y: 896}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1942499593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942499588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728d01b2e1ea0c34e8e3f79f7dc8eb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPoints: {fileID: 454635403}
+  playerGuns: {fileID: 454635399}
+  playerPowerUps: {fileID: 0}
+  shopInteraction: {fileID: 454635405}
+  tapiocaCharque: {fileID: 11400000, guid: f54da175f7efc3948b9eaba53470e8fc, type: 2}
+  tapiocaChicken: {fileID: 11400000, guid: 3894ac58e8ac90443ac5a912c997dd28, type: 2}
+  tapiocaCoconut: {fileID: 11400000, guid: ea4b93199916e5148bafcdfde16b6eb3, type: 2}
 --- !u!1 &1953689585
 GameObject:
   m_ObjectHideFlags: 0
