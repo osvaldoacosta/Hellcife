@@ -15,6 +15,10 @@ public class Target : MonoBehaviour, IDamageable
     {
         return current_health;
     }
+    public float GetMaxHealth()
+    {
+        return max_health;
+    }
     public void SetMaxHealth(float health)
     {
         this.max_health = health;
