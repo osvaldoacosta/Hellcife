@@ -39,16 +39,23 @@ public class MeleeEnemyBehaviour : MonoBehaviour
 
     [SerializeField] private EnemyStates activeEnemyState= 0;
     
+    private float runAnimationOffset;
+    private Animator animator;
+    
     private bool ableToSeeSorroundings;
 
     // Update is called once per frame
     void Start(){
+        runAnimationOffset= Random.Range(0, 1f);
+        animator = GetComponent<Animator>();
+        animator.SetFloat("RunOffset", runAnimationOffset);
         enemyNavMeshAgent= GetComponent<NavMeshAgent>();
         target= GameObject.FindWithTag("Player");
         attackHitbox= GetComponentInChildren<AttackHitbox>(true);
     }
     void Update()
     {
+        animateAction();
         if(isActionLocked()){
             switch (activeEnemyState){
                 case EnemyStates.windingUpAttack:
@@ -118,6 +125,9 @@ public class MeleeEnemyBehaviour : MonoBehaviour
                 }
                 }
         }
+    }
+    private void animateAction(){
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
     }
     private void enemyAction(){
         switch (activeEnemyState){
