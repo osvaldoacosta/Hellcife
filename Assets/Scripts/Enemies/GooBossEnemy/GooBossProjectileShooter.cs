@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GooProjectileShooter : MonoBehaviour
+public class GooBossProjectileShooter : MonoBehaviour
 {
     public GameObject gooProjectileObjectPool;
     void Start()
