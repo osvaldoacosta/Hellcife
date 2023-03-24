@@ -8,7 +8,7 @@ public class PlayerGunInventory : MonoBehaviour
     [SerializeField] public List<Gun> guns;
     [SerializeField] private ushort currentWeaponIndex;
     public static Action<ushort,Gun> onWeaponChange; 
-    private ushort carryingSize;
+    [SerializeField]private ushort carryingSize;
    
 
     void Start()
@@ -53,6 +53,11 @@ public class PlayerGunInventory : MonoBehaviour
     public void IncreaseCarryingSize()
     {
         carryingSize = 3; //Como so tem 3 armas equipaveis, n eh necessario botar um valor modular, ou incrementar, evitando futuros bug's na mecanica. 
+    }
+
+    public ushort GetCarringSize()
+    {
+        return carryingSize;
     }
     public Gun GetCurrentGun()
     {

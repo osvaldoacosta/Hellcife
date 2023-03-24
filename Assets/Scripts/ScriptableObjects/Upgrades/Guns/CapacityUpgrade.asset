@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc328cc201e28ea4485b446fd201aff9, type: 3}
-  m_Name: CoconutTapioca
+  m_Name: CapacityUpgrade
   m_EditorClassIdentifier: 
-  name: Tapioca de coco
-  description: Aumento de 15% na velocidade de movimento
+  name: Melhora do carregador
+  description: Aumento de 25% no carregador
   useLimit: 5
-  valueToAdd: 115
-  price: 2000
+  valueToAdd: 125
+  price: 900

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharqueTapioca
   m_EditorClassIdentifier: 
   name: Tapioca de charque
-  description: 
-  useLimit: 3
+  description: Aumento de vida
+  useLimit: 10
   valueToAdd: 50
   price: 2500

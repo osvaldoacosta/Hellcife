@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Tapioca", menuName = "Upgrade/Tapioca")]
-public class TapiocaInfo:ScriptableObject
+[CreateAssetMenu(fileName = "CreateUpgrade", menuName = "Upgrade")]
+public class UpgradeInfo:ScriptableObject
 {
     [Header("Name")]
     public new string name;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc328cc201e28ea4485b446fd201aff9, type: 3}
   m_Name: ChickenTapioca
   m_EditorClassIdentifier: 
-  name: Tapioca de Frango
-  description: 
+  name: Tapioca de frango
+  description: Aumento de capacidade de carga
   useLimit: 1
   valueToAdd: 0
   price: 5000

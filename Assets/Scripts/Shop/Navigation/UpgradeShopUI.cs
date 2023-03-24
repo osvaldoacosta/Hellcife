@@ -9,10 +9,16 @@ public class UpgradeShopUI : MonoBehaviour
     [SerializeField] private GameObject categoriesPanel;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject menuUpgradePanel;
+
+    [SerializeField] private GameObject gunsArea;
+    [SerializeField] private GameObject upgradeArea;
+
+
     public void OpenGunOption()
     {
         gunOption.SetActive(true);
         gameObject.SetActive(false);
+        
     }
 
     public void OpenPlayerOption()
@@ -28,7 +34,19 @@ public class UpgradeShopUI : MonoBehaviour
 
     public void GoToMenuUpgradePanel()
     {
+        if(gunsArea != null && upgradeArea !=null) {
+            gunsArea.SetActive(true);
+            upgradeArea.SetActive(false);
+        }
         menuUpgradePanel.SetActive(true);
         gameObject.SetActive(false);
     }
+
+    public void OpenGunUpgradeArea()
+    {
+        gunsArea.SetActive(false);
+        upgradeArea.SetActive(true);
+    }
+
+    
 }

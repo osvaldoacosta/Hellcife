@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc328cc201e28ea4485b446fd201aff9, type: 3}
-  m_Name: CoconutTapioca
+  m_Script: {fileID: 11500000, guid: 7d19f96f5ef7a2044941b446aa97bee2, type: 3}
+  m_Name: ShotgunForSale
   m_EditorClassIdentifier: 
-  name: Tapioca de coco
-  description: Aumento de 15% na velocidade de movimento
-  useLimit: 5
-  valueToAdd: 115
-  price: 2000
+  name: Shotgun
+  description: Arminha que faz tchuq tchuq
+  gunInfo: {fileID: 11400000, guid: 76401c45b5e596a4b830a3aae37914b4, type: 2}
+  price: 3000
+  isAvaliable: 1

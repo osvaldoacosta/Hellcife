@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5302365f269b84387216d3ac355f3d, type: 3}
+  m_Name: Plock
+  m_EditorClassIdentifier: 
+  name: Plock
+  description: 
+  damage: 24.883198
+  maxDistance: 50
+  isAutomatic: 0
+  wasShot: 0
+  currentAmmo: 48
+  magSize: 48
+  roundsPerMinute: 950.4
+  reloadTime: 1.536
+  isReloading: 0
+  isAiming: 0

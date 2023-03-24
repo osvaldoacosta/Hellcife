@@ -32,6 +32,7 @@ public class PlayerShop : MonoBehaviour
         {
             points.LosePoints(5);
             if (listgun.guns.Count == 1)
+            if (listgun.guns.Count == 1)
             {
                 listgun.guns.Add(gun0);
                 BuyAmmo0.interactable = false;

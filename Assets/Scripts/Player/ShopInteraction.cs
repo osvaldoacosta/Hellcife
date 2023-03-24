@@ -1,9 +1,28 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 //Ao player comprar um item na loja, essa classe eh chamada para modificar status do player.
 public class ShopInteraction : MonoBehaviour
 {
+    private PlayerGunInventory gunInventory;
+
+    public List<Gun> GetGunsInInventory()
+    {
+        return gunInventory.guns;
+    }
+
+    public ushort GetInventoryCapacity()
+    {
+        return gunInventory.GetCarringSize();
+    }
+
+    private void Awake()
+    {
+        gunInventory = GetComponent<PlayerGunInventory>();
+    }
+
+
     public void IncreaseHpWithTapioca(ushort hpToAdd)
     {
         Target player = GetComponent<Target>();
@@ -22,6 +41,8 @@ public class ShopInteraction : MonoBehaviour
     {
         GetComponent<PlayerGunInventory>().IncreaseCarryingSize();
     }
-    
+
+   
+
 
 }
