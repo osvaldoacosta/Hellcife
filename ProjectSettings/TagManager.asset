@@ -8,6 +8,7 @@ TagManager:
   - ExplosiveEnemyObjectPool
   - GooProjectilePool
   - GooPuddlePool
+  - SwordAttackHitbox
   layers:
   - Default
   - TransparentFX
