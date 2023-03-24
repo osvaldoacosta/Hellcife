@@ -81,7 +81,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.526976
+  m_Radius: 5.43
   m_Height: 7.6527524
   m_Direction: 1
   m_Center: {x: 0, y: 4.2287693, z: 0}
@@ -114,12 +114,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 201557283819370908}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 3
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2.8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyNavMeshAgent: {fileID: 1012600291524276389}
   target: {fileID: 0}
-  attackRange: 2
+  attackRange: 3
   attackDamage: 25
   attackFinishingDuration: 0.3
   attackWindupDuration: 1
@@ -737,7 +737,7 @@ Transform:
   m_GameObject: {fileID: 7494209189729589433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.3000002, y: 0, z: -1.0599995}
-  m_LocalScale: {x: 16.666666, y: 16.666666, z: 16.666666}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 686732854452970278}

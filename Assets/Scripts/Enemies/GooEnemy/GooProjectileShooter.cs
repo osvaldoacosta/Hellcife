@@ -7,7 +7,7 @@ public class GooProjectileShooter : MonoBehaviour
     public GameObject gooProjectileObjectPool;
     void Start()
     {
-        return;
+        gooProjectileObjectPool= GameObject.FindWithTag("GooProjectilePool");
     }
 
     // Update is called once per frame

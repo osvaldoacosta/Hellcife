@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GooPuddle
   - ExplosiveEnemyObjectPool
+  - GooProjectilePool
+  - GooPuddlePool
   layers:
   - Default
   - TransparentFX

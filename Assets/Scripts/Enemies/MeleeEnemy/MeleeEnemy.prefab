@@ -350,10 +350,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.0346603
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.0910449, z: 0}
+  m_Radius: 0.97168875
+  m_Height: 2.6924877
+  m_Direction: 2
+  m_Center: {x: -0.47168875, y: 1.0910449, z: 0.3289137}
 --- !u!95 &1968666063189062793
 Animator:
   serializedVersion: 5
@@ -384,11 +384,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.6
-  m_Speed: 4
+  m_Speed: 5.5
   m_Acceleration: 999
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyNavMeshAgent: {fileID: 1968666063189062791}
   target: {fileID: 0}
-  attackRange: 2
+  attackRange: 3
   attackDamage: 5
   attackFinishingDuration: 0.2
   attackWindupDuration: 0.2
@@ -458,8 +458,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968666064183554875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.5}
-  m_LocalScale: {x: 2.5, y: 1, z: 1.5}
+  m_LocalPosition: {x: 0, y: 1, z: 2}
+  m_LocalScale: {x: 2.5, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2078589519526062513}
@@ -493,7 +493,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968666064183554875}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

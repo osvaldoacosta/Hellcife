@@ -153,6 +153,8 @@ public class MeleeEnemyBehaviour : MonoBehaviour
     }
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
+        Vector3 enemyToTargetDirection= targetCoord-enemyCoord;
+        transform.forward= new Vector3(enemyToTargetDirection.x, 0, enemyToTargetDirection.z);
         //silly attack animation for debug purposes
         //transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
         endOfAttackWindup= Time.time + attackWindupDuration;

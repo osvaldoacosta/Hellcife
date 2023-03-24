@@ -39,11 +39,14 @@ public class ExplosiveEnemyBehaviour : MonoBehaviour
 
     [SerializeField] private EnemyStates activeEnemyState= 0;
     private Animator animator;
-    
+    private float runAnimationOffset;
+
     private bool ableToSeeSorroundings;
 
     void Start(){
         animator = GetComponent<Animator>();
+        runAnimationOffset= Random.Range(0, 1f);
+        animator.SetFloat("RunOffset", runAnimationOffset);
         enemyNavMeshAgent= GetComponent<NavMeshAgent>();
         target= GameObject.FindWithTag("Player");
         attackHitbox= GetComponentInChildren<AttackHitbox>(true);
