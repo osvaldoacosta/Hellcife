@@ -1,4 +1,4 @@
-# HELLCITY
+# HELLCIFE
 
 Neste jogo, o jogador tem de passar por várias hordas de inimigos e sobreviver o máximo possível.
 
