@@ -13,9 +13,9 @@ public class PowerUpUpgradeShop: UpgradeShop
 
     private Dictionary<UpgradeInfo, Action<UpgradeInfo>> upgradeBasedOnTapioca;
     
-    private void IncreaseHP(UpgradeInfo tapioca) => GetShopInteraction().IncreaseHpWithTapioca(tapioca.valueToAdd);
-    private void IncreaseSpeed(UpgradeInfo tapioca) => GetShopInteraction().IncreaseSpeedWithTapioca(tapioca.valueToAdd);
-    private void IncreaseCarryingCapacity(UpgradeInfo tapioca) => GetShopInteraction().IncreaseCarryingCapacityWithTapioca();
+    private void IncreaseHP(UpgradeInfo tapioca) => GetShopInteraction().IncreasePlayerHp(tapioca.valueToAdd);
+    private void IncreaseSpeed(UpgradeInfo tapioca) => GetShopInteraction().IncreasePlayerSpeed(tapioca.valueToAdd);
+    private void IncreaseCarryingCapacity(UpgradeInfo tapioca) => GetShopInteraction().IncreaseCarryingCapacity();
 
 
     private void Awake()
@@ -37,7 +37,7 @@ public class PowerUpUpgradeShop: UpgradeShop
     
 
 
-    public void CreateTapiocaUpgradeDictionary()
+    private void CreateTapiocaUpgradeDictionary()
     {
         if (upgradeBasedOnTapioca == null)
         {

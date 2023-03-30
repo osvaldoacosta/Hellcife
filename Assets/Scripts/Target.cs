@@ -38,6 +38,10 @@ public class Target : MonoBehaviour, IDamageable
         {
             current_health += heal;
         }
+        else
+        {
+            current_health = max_health;
+        }
     }
     public bool IsDead()
     {

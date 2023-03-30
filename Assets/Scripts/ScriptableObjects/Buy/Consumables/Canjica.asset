@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Canjica
   description: Bom pra ir no banheiro depois
-  healRecover: 200
+  price: 500
+  isAvaliable: 1
+  recoverValue: 200

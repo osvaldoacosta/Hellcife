@@ -53,7 +53,7 @@ public class Gun : MonoBehaviour
         }
 
     }
-    private void Shoot()
+    private void Shoot(float playerBaseDamage)
     {
         if (gunInfo.currentAmmo > 0)
         {
@@ -61,12 +61,12 @@ public class Gun : MonoBehaviour
 
             if (CanShoot())
             {
-                OnGunShoot();
+                OnGunShoot(playerBaseDamage);
             }
         }
     }
 
-    private void OnGunShoot()
+    private void OnGunShoot(float playerBaseDamage)
     {
 
         Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
@@ -76,7 +76,7 @@ public class Gun : MonoBehaviour
 
         GameObject bullet = bulletPool.GetPooledObject();
 
-        bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); //Seta o dano dessa balita
+        bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage * playerBaseDamage); //Seta o dano dessa balita
         bullet.transform.position = muzzle.position; //Bota a bala na posi��o certa
         
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 30f; //Fazer algum calculo doido para velocidade da bala

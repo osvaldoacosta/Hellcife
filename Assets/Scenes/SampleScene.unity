@@ -6556,12 +6556,24 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2051224943}
         m_TargetAssemblyTypeName: GunShop, Assembly-CSharp
+        m_MethodName: SetButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 347480759}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2051224943}
+        m_TargetAssemblyTypeName: GunShop, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: a69d4b275484ecf46828640ba8b589d6,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: BuyableItem, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: BuyableGun, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9328,6 +9340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67473292d77ab3949bd7d28e0e717e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBaseDamage: 1
   reloadKey: 114
   currentGunInfo: {fileID: 11400000, guid: f0f0203cc8835254085a4bc8ef23658e, type: 2}
 --- !u!114 &454635398
@@ -17669,7 +17682,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 868032621}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1183738351}
+        m_TargetAssemblyTypeName: ConsumableShop, Assembly-CSharp
+        m_MethodName: BuyEffectConsumable
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c1e834fe8badcd848879744f3129ab70,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: EffectConsumable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &868032621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19543,7 +19569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3000
+  m_text: 9000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23249,7 +23275,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: b89e840abbb0b2b4ba05fd5f577a1dee,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: BuyableItem, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: BuyableGun, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -23750,6 +23776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1183738350}
+  - component: {fileID: 1183738351}
   m_Layer: 5
   m_Name: Consume
   m_TagString: Untagged
@@ -23782,6 +23809,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1183738351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183738349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2214b63741cdfbd498a5cffec4defdc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPoints: {fileID: 454635403}
+  shopInteraction: {fileID: 454635405}
 --- !u!1 &1184608894
 GameObject:
   m_ObjectHideFlags: 0
@@ -31389,7 +31430,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1560016100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1183738351}
+        m_TargetAssemblyTypeName: ConsumableShop, Assembly-CSharp
+        m_MethodName: BuyInstaConsumable
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 4035fa61a6f3139438ba79fa12b9b7e1,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: InstaConsumable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1560016100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33848,7 +33902,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1666067605}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1183738351}
+        m_TargetAssemblyTypeName: ConsumableShop, Assembly-CSharp
+        m_MethodName: BuyEffectConsumable
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c43134fdc34356649a58ad1a397c91c2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: EffectConsumable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1666067605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34123,12 +34190,24 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2051224943}
         m_TargetAssemblyTypeName: GunShop, Assembly-CSharp
+        m_MethodName: SetButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1668855087}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2051224943}
+        m_TargetAssemblyTypeName: GunShop, Assembly-CSharp
         m_MethodName: BuyWeapon
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 09258976e3d63d349bf59c3d86fb4016,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: BuyableItem, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: BuyableGun, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -38005,7 +38084,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2000981648}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1183738351}
+        m_TargetAssemblyTypeName: ConsumableShop, Assembly-CSharp
+        m_MethodName: BuyEffectConsumable
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: ecfd8f765e44f574199464f8c459d1a8,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: EffectConsumable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2000981648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38559,7 +38651,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2021185350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1183738351}
+        m_TargetAssemblyTypeName: ConsumableShop, Assembly-CSharp
+        m_MethodName: BuyInstaConsumable
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 237caf49484f99748840a741cd4fd009,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: InstaConsumable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2021185350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39200,6 +39305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPoints: {fileID: 454635403}
   shopInteraction: {fileID: 454635405}
+  gunButton: {fileID: 0}
   buyShop: {fileID: 2007123891}
 --- !u!1 &2059189693
 GameObject:

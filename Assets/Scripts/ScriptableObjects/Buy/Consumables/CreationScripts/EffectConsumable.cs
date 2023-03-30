@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "InstaConsumable", menuName = "Item/Consumable/EffectUse")]
-public class EffectConsumable : ConsumableBaseObject
+public class EffectConsumable : BuyableItem
 {
     
     [Header("Stats")]

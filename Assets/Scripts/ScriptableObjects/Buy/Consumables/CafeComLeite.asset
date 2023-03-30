@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e086e3406f5b8df4a89c335ff7f0471a, type: 3}
-  m_Name: CocadaPreta
+  m_Name: CafeComLeite
   m_EditorClassIdentifier: 
-  name: Cocada preta
-  description: "N\xE3o, voc\xEA n\xE3o ir\xE1 se tornar o rei da cocada preta, mas
-    pelo menos vai ganhar um aumento em todas as suas estatisticas por 5 minutos."
-  healIncrementPerc: 100
+  name: "Caf\xE9 com leite"
+  description: "Aumento de vida e de velocidade por 3 minutos. Quero caf\xE9ee"
+  price: 1500
+  isAvaliable: 1
+  healIncrementPerc: 150
   speedIncrementPerc: 150
-  damageIncrementPerc: 200
-  effectDuration: 5
+  damageIncrementPerc: 0
+  effectDuration: 180

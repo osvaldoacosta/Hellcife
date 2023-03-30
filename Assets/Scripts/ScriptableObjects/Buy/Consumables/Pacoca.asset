@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e086e3406f5b8df4a89c335ff7f0471a, type: 3}
-  m_Name: CafeComLeite
+  m_Name: Pacoca
   m_EditorClassIdentifier: 
-  name: "Caf\xE9 com leite"
-  description: "Aumento de vida e de velocidade por 3 minutos. Quero caf\xE9ee"
-  healIncrementPerc: 50
-  speedIncrementPerc: 150
-  damageIncrementPerc: 0
+  name: "Pa\xE7oca"
+  description: 'Aumento de vida e de dano por 3 minutos, cuidado com a diabetes. '
+  price: 2000
+  isAvaliable: 1
+  healIncrementPerc: 200
+  speedIncrementPerc: 0
+  damageIncrementPerc: 150
   effectDuration: 180

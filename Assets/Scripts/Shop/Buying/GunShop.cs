@@ -7,15 +7,15 @@ using UnityEngine.UI;
 public class GunShop : BuyShop
 {
     private Gun selectedGun;
-    private Button gunButton;
+    [SerializeField] private Button gunButton;
     [SerializeField] private GameObject buyShop;
-    private BuyableItem buyableGun;
+    private BuyableGun buyableGun;
     private void OnEnable()
     {
         GreyOutWeapons();
     }
 
-    public void BuyWeapon(BuyableItem buyableGun)
+    public void BuyWeapon(BuyableGun buyableGun)
     {
         this.buyableGun = buyableGun;
 
