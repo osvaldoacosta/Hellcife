@@ -53,9 +53,19 @@ public class GooEnemyBehaviour : MonoBehaviour
     public float gooPuddleRadius = 3f;
     public float gooPuddleDuration = 5f;
 
+    private float runAnimationOffset;
+    private Animator animator;
+
+    void Start(){
+        runAnimationOffset= Random.Range(0, 1f);
+        animator = GetComponent<Animator>();
+        animator.SetFloat("RunOffset", runAnimationOffset);
+        target= GameObject.FindWithTag("Player");
+    }
     // Update is called once per frame
     void Update()
     {
+        animateAction();
         if(isActionLocked()){
             switch (activeEnemyState){
                 case EnemyStates.panicking:
@@ -73,12 +83,8 @@ public class GooEnemyBehaviour : MonoBehaviour
                     return;
                 case EnemyStates.finishingAttack:
                     if( Time.time < endOfAttack ){
-                        //silly attack animation for debug purposes
-                        transform.localScale= new Vector3(0.8f, 1.2f, 0.8f);
                         return;
                     }
-                    //silly attack animation for debug purposes
-                    transform.localScale= new Vector3(1f, 1f, 1f);
                     break;
                 default:
                     break;
@@ -154,8 +160,8 @@ public class GooEnemyBehaviour : MonoBehaviour
     }
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
-        //silly attack animation for debug purposes
-        transform.localScale = new Vector3(1.3f, 0.8f, 1.3f);
+        Vector3 enemyToTargetDirection= targetCoord-enemyCoord;
+        transform.forward= new Vector3(enemyToTargetDirection.x, 0, enemyToTargetDirection.z);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
 
@@ -187,7 +193,9 @@ public class GooEnemyBehaviour : MonoBehaviour
         }
         
     }
-
+    private void animateAction(){
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
+    }
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:
@@ -205,8 +213,6 @@ public class GooEnemyBehaviour : MonoBehaviour
         }
     }
     private void gooAttack(){
-        //silly attack animation for debug purposes
-        transform.localScale= new Vector3(1f, 1f, 1f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 

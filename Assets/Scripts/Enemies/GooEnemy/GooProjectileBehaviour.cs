@@ -35,6 +35,9 @@ public class GooProjectileBehaviour : MonoBehaviour
     public GameObject gooPuddleObjectPool;
     private GameObject newGooPuddle;
 
+    void Start(){
+        gooPuddleObjectPool= GameObject.FindWithTag("GooPuddlePool");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -96,7 +99,7 @@ public class GooProjectileBehaviour : MonoBehaviour
         IDamageable damageable = other.GetComponent<IDamageable>(); //checa se o objeto que colidiu possui a interface do IDamageable
         if(damageable != null && other.tag == "Player")
         {
-            damageable.TakeDamage(10); //Aumentar o dano da goo, quando a wave aumentar, por enquanto será 10 de dano por hit
+            damageable.TakeDamage(10); //Aumentar o dano da goo, quando a wave aumentar, por enquanto serï¿½ 10 de dano por hit
         }
     }
 }
