@@ -1,0 +1,4 @@
+1 - um GRUPO de inimigos é uma lista de inimigos.
+2 - uma WAVE é uma lista de GRUPO de inimigos.
+3 - os portais vão distrubuir entre si cada item da WAVE toda WAVE.
+4 - cada portal vai, durante a wave, spawnar um GRUPO de inimigos e entrar em cooldown de acordo com a informação que recebe do GRUPO de inimigos.
