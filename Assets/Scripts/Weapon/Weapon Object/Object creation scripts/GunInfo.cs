@@ -13,6 +13,7 @@ public class GunInfo : ScriptableObject
     public float maxDistance;
     public bool isAutomatic;
     public bool wasShot;
+    public ushort bulletsPerShot;
     [Header("Reloading")]
     public int currentAmmo;
     public int magSize;
@@ -21,5 +22,7 @@ public class GunInfo : ScriptableObject
     public bool isMagReloaded;
     public bool isReloading;
     public bool isAiming;
+
+    
     
 }

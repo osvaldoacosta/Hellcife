@@ -51,6 +51,7 @@ public class Gun : MonoBehaviour
             {
                 int bulletsToReload = gunInfo.magSize - gunInfo.currentAmmo;
                 float timeToPutOneAmmo = gunInfo.reloadTime / gunInfo.magSize;
+                //Para cada bala da shotgun ele vai dar o yield
                 for (int i = 0; i < bulletsToReload; i++)
                 {
                     yield return new WaitForSeconds(timeToPutOneAmmo);
@@ -70,12 +71,19 @@ public class Gun : MonoBehaviour
 
             if (CanShoot())
             {
-                OnGunShoot();
+                if (gunInfo.isMagReloaded)
+                {
+                    OnMagGunShoot();
+                }
+                else
+                {
+                    OnShotgunShoot();
+                }
             }
         }
     }
 
-    private void OnGunShoot()
+    private void OnMagGunShoot()
     {
 
         Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
@@ -88,13 +96,39 @@ public class Gun : MonoBehaviour
         bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); //Seta o dano dessa balita
         bullet.transform.position = muzzle.position; //Bota a bala na posi��o certa
         
-        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 30f; //Fazer algum calculo doido para velocidade da bala
+        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 50f; //Fazer algum calculo doido para velocidade da bala
         bullet.SetActive(true);
         
         gunInfo.currentAmmo -= 1;
         timeSinceLastShot = 0f;
 
 
+    }
+
+    private void OnShotgunShoot()
+    {
+        Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
+        for (int i = 0; i <gunInfo.bulletsPerShot; i++)
+        {
+            // Instantiate a bullet from the object pool
+            GameObject bullet = bulletPool.GetPooledObject();
+            Debug.Log("entrada: " + bullet.activeSelf);
+            bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); // Set the damage of the bullet
+            bullet.transform.position = muzzle.position; // Set the position of the bullet to the muzzle position
+
+            // Calculate a random direction and velocity for the bullet
+            Vector3 randomDirection = Quaternion.Euler(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0f) * muzzleDirection;
+            float randomVelocity = Random.Range(40f, 50f);
+
+            // Set the velocity of the bullet based on the random direction and velocity
+            bullet.GetComponent<Rigidbody>().velocity = randomDirection * randomVelocity;
+
+            // Activate the bullet
+            bullet.SetActive(true);
+        }
+
+        gunInfo.currentAmmo -= 1;
+        timeSinceLastShot = 0f;
     }
 
     // Update is called once per frame
