@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Reminto 869
   description: "Disparo em \xE1rea, por\xE9m menor distancia"
-  damage: 8
-  maxDistance: 25
+  damage: 9
+  maxDistance: 50
   isAutomatic: 0
   wasShot: 0
+  bulletsPerShot: 1
   currentAmmo: 6
   magSize: 6
   roundsPerMinute: 80

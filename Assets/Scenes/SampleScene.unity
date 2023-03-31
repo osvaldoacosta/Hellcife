@@ -26461,7 +26461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 1252500448}
-  gunInfo: {fileID: 11400000, guid: f0f0203cc8835254085a4bc8ef23658e, type: 2}
+  gunInfo: {fileID: 11400000, guid: 4876037d1b88d4542b41f8b2b9050cd1, type: 2}
   muzzle: {fileID: 2064079255}
   bulletProjectile: {fileID: 1779069243785732917, guid: 2ce9674e39d1f3a46abc36a8cff5f7b1,
     type: 3}
@@ -33158,11 +33158,18 @@ MonoBehaviour:
   playerPoints: {fileID: 454635403}
   shopInteraction: {fileID: 454635405}
   gunUI: {fileID: 0}
-  gunDmgUpgrade: {fileID: 11400000, guid: 5b8cf062636bc9043b96ac2ee8c90143, type: 2}
-  gunFirerateUpgrade: {fileID: 11400000, guid: 36d1a50be3756304bb3e5ee8e225802b, type: 2}
-  gunReloadSpeedUpgrade: {fileID: 11400000, guid: 31f072bb6579ecb48bce8c8d042b1016,
+  gunDmgUpgradeRef: {fileID: 11400000, guid: 5b8cf062636bc9043b96ac2ee8c90143, type: 2}
+  gunFirerateUpgradeRef: {fileID: 11400000, guid: 36d1a50be3756304bb3e5ee8e225802b,
     type: 2}
-  gunCapacityUpgrade: {fileID: 11400000, guid: 8b6d8088253be8d4886f301e1f2c60ed, type: 2}
+  gunReloadSpeedUpgradeRef: {fileID: 11400000, guid: 31f072bb6579ecb48bce8c8d042b1016,
+    type: 2}
+  gunCapacityUpgradeRef: {fileID: 11400000, guid: 8b6d8088253be8d4886f301e1f2c60ed,
+    type: 2}
+  uniqueGunUpgradeRef: {fileID: 11400000, guid: 8fd7d93e36227cd4cb7297ff60df7d6d,
+    type: 2}
+  pistolReference: {fileID: 1310630582}
+  shotgunReference: {fileID: 6710955307788746501}
+  rifleReference: {fileID: 0}
 --- !u!1 &1628652580
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class GunShop : BuyShop
     {
         this.buyableGun = buyableGun;
 
-        List<Gun> guns= GetShopInteraction().GetGunsInInventory();
+        List<Gun> guns= GetShopInteraction().GetPlayerGunInInventory();
         foreach(Gun gun in guns)
         {
             if (gun.Equals(selectedGun) || !buyableGun.isAvaliable)
@@ -49,7 +49,7 @@ public class GunShop : BuyShop
    
     public void ChangeWeaponSlot(bool isFirstSlot)
     {
-        List<Gun> guns = GetShopInteraction().GetGunsInInventory();
+        List<Gun> guns = GetShopInteraction().GetPlayerGunInInventory();
         if(isFirstSlot)
         {
             guns.RemoveAt(0);

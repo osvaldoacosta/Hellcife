@@ -11,7 +11,7 @@ public class ShopInteraction : MonoBehaviour
 {
     private PlayerGunInventory gunInventory;
 
-    public List<Gun> GetGunsInInventory()
+    public List<Gun> GetPlayerGunInInventory()
     {
         return gunInventory.guns;
     }

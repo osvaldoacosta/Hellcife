@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Plock
   description: 
-  damage: 24.883198
+  damage: 10
   maxDistance: 50
   isAutomatic: 0
   wasShot: 0
-  currentAmmo: 48
-  magSize: 48
-  roundsPerMinute: 950.4
-  reloadTime: 1.536
+  bulletsPerShot: 0
+  currentAmmo: 15
+  magSize: 15
+  roundsPerMinute: 550
+  reloadTime: 3
   isReloading: 0
   isAiming: 0

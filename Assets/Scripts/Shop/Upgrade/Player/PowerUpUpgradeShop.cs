@@ -11,7 +11,7 @@ public class PowerUpUpgradeShop: UpgradeShop
     [SerializeField] private UpgradeInfo tapiocaChickenReference;
     [SerializeField] private UpgradeInfo tapiocaCoconutReference;
 
-    private Dictionary<UpgradeInfo, Action<UpgradeInfo>> upgradeBasedOnTapioca;
+    private Dictionary<UpgradeInfo, (Action<UpgradeInfo>,UpgradeInfo)> upgradeBasedOnTapioca;
     
     private void IncreaseHP(UpgradeInfo tapioca) => GetShopInteraction().IncreasePlayerHp(tapioca.valueToAdd);
     private void IncreaseSpeed(UpgradeInfo tapioca) => GetShopInteraction().IncreasePlayerSpeed(tapioca.valueToAdd);
@@ -21,10 +21,6 @@ public class PowerUpUpgradeShop: UpgradeShop
     private void Awake()
     {
         CreateTapiocaUpgradeDictionary();
-        CreateReferenceToInstantiatedDictionary(new HashSet<UpgradeInfo>(upgradeBasedOnTapioca.Keys));
-
-
-
         //TODO: Fazer com que as tapiocas disponiveis fiquei disponiveis na ui, e o resto fique cinzada
     }
 
@@ -41,12 +37,15 @@ public class PowerUpUpgradeShop: UpgradeShop
     {
         if (upgradeBasedOnTapioca == null)
         {
-            upgradeBasedOnTapioca = new Dictionary<UpgradeInfo, Action<UpgradeInfo>>
+            upgradeBasedOnTapioca = new Dictionary<UpgradeInfo, (Action<UpgradeInfo>, UpgradeInfo)>
             {
-                { tapiocaCharqueReference, IncreaseHP },
-                { tapiocaChickenReference, IncreaseCarryingCapacity },
-                { tapiocaCoconutReference, IncreaseSpeed },
+                { tapiocaCharqueReference, (IncreaseHP,Instantiate(tapiocaCharqueReference)) },
+                { tapiocaChickenReference, (IncreaseCarryingCapacity,Instantiate(tapiocaChickenReference)) },
+                { tapiocaCoconutReference, (IncreaseSpeed,Instantiate(tapiocaCoconutReference)) },
             };
         }
     }
+   
 }
+
+
