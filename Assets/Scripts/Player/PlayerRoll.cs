@@ -5,27 +5,53 @@ using UnityEngine;
 
 public class PlayerRoll : MonoBehaviour
 {
-    public float rollForce = 500f;
-
+    public float rollSpeed = 5f;
+    
     private Rigidbody rigidBody;
-
-    void Start()
+    private Animator animator;
+    private PlayerMovement pm;
+    void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        animator= GetComponent<Animator>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(!animator.GetBool("isRolling"))
         {
-            Roll();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                animator.SetBool("isRolling", true);
+                Debug.Log(rigidBody.velocity);
+                StartCoroutine(Roll());
+            }
         }
+        
+       
+       
+
     }
 
-    void Roll()
+    IEnumerator Roll()
     {
-        Vector3 rollDirection = transform.forward;
-        rollDirection.y = 0f; // Ignore any vertical component
-        rigidBody.AddForce(rollDirection.normalized * rollForce, ForceMode.Impulse);
+        pm.canMove = false;
+        rigidBody.velocity = (transform.forward * rollSpeed/2);
+        yield return new WaitForSeconds(0.15f);
+        rigidBody.velocity = (transform.forward * rollSpeed);
+        yield return new WaitForSeconds(0.60f);
+        rigidBody.velocity = (transform.forward * (rollSpeed / 2f));
+        yield return new WaitForSeconds(0.15f);
+
+
+        rigidBody.velocity = (transform.forward * (rollSpeed / 3f));
+        yield return new WaitForSeconds(0.15f);
+        
+        pm.canMove = true;
+        animator.SetBool("isRolling", false);
     }
+
+
+    
 }
