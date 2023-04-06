@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab5302365f269b84387216d3ac355f3d, type: 3}
-  m_Name: Glock
+  m_Name: Escopeta
   m_EditorClassIdentifier: 
-  name: Glock
-  damage: 10
+  name: Remington
+  damage: 3
   maxDistance: 50
   isAutomatic: 0
   wasShot: 0
-  currentAmmo: 8
-  magSize: 15
-  roundsPerMinute: 550
-  reloadTime: 3
-  isMagReloaded: 1
+  currentAmmo: 6
+  magSize: 6
+  roundsPerMinute: 120
+  reloadTime: 4
+  isMagReloaded: 0
   isReloading: 0
   isAiming: 0
