@@ -42,8 +42,9 @@ public class Target : MonoBehaviour, IDamageable
     //dano sem particula
     public void TakeDamage(float damage)
     {
-        ephemeralParticle = bloodParticlePool.GetPooledObject().GetComponent<EphemeralParticle>();
-        if(ephemeralParticle!=null){
+       GameObject ephemeralParticleObject = bloodParticlePool.GetPooledObject();
+        if(ephemeralParticleObject != null){
+            ephemeralParticle = ephemeralParticleObject.GetComponent<EphemeralParticle>();
             ephemeralParticle.transform.position= transform.position;
             ephemeralParticle.Emit(5);
         }
