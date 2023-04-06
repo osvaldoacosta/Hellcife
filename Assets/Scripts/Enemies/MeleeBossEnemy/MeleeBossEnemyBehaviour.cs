@@ -30,6 +30,9 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
     private Vector3 targetCoord;
     private Vector3 distanceFromTargetVector;
 
+    //attack particle emmiter
+    [SerializeField] EphemeralParticle particleEmmiter;
+
     //all possible enemy states
     public enum EnemyStates{
         idle = 0,
@@ -39,17 +42,23 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
     }
 
     [SerializeField] private EnemyStates activeEnemyState= 0;
+    private float runAnimationOffset;
+    private Animator animator;
     
     private bool ableToSeeSorroundings;
 
     // Update is called once per frame
     void Start(){
+        runAnimationOffset= Random.Range(0, 1f);
+        animator = GetComponent<Animator>();
+        animator.SetFloat("RunOffset", runAnimationOffset);
         enemyNavMeshAgent= GetComponent<NavMeshAgent>();
         target= GameObject.FindWithTag("Player");
         attackHitbox= GetComponentInChildren<AttackHitbox>(true);
     }
     void Update()
     {
+        animateAction();
         if(isActionLocked()){
             switch (activeEnemyState){
                 case EnemyStates.windingUpAttack:
@@ -62,11 +71,11 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
                 case EnemyStates.finishingAttack:
                     if( Time.time < endOfAttack ){
                         //silly attack animation for debug purposes
-                        transform.localScale= new Vector3(1.6f, 2.4f, 1.6f);
+                        //transform.localScale= new Vector3(1.6f, 2.4f, 1.6f);
                         return;
                     }
                     //silly attack animation for debug purposes
-                    transform.localScale= new Vector3(2f, 2f, 2f);
+                    //transform.localScale= new Vector3(2f, 2f, 2f);
                     break;
                 default:
                     break;
@@ -124,6 +133,9 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
                 }
         }
     }
+    private void animateAction(){
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
+    }
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:
@@ -148,8 +160,10 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
     }
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
+        Vector3 enemyToTargetDirection= targetCoord-enemyCoord;
+        transform.forward= new Vector3(enemyToTargetDirection.x, 0, enemyToTargetDirection.z);
         //silly attack animation for debug purposes
-        transform.localScale = new Vector3(2.6f, 1.6f, 2.6f);
+        //transform.localScale = new Vector3(2.6f, 1.6f, 2.6f);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
     private void calculateDistanceVector(){
@@ -158,12 +172,13 @@ public class MeleeBossEnemyBehaviour : MonoBehaviour
     }
     private void meleeAttack(){
         //silly attack animation for debug purposes
-        transform.localScale= new Vector3(2f, 2f, 2f);
+        //transform.localScale= new Vector3(2f, 2f, 2f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 
         acquireSelfCoordsAndTargetCoords();
 
+        particleEmmiter.Emit(50);
         attackHitbox.checkHitAndDealDamage(attackDamage, attackActiveTime);
         //update the attack animation cooldown and attack cooldown
         endOfAttack= Time.time + attackFinishingDuration;

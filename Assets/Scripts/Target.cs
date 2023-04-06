@@ -9,7 +9,7 @@ public class Target : MonoBehaviour, IDamageable
     private EphemeralParticle ephemeralParticle;
     [SerializeField] private bool bleeds;
     [SerializeField] private float current_health;
-    private float max_health;
+    [SerializeField] private float max_health;
 
     void Start()
     {
@@ -35,6 +35,9 @@ public class Target : MonoBehaviour, IDamageable
     public void SetMaxHealth(float health)
     {
         this.max_health = health;
+    }
+    public void OnEnable(){
+        current_health= max_health;
     }
     //dano sem particula
     public void TakeDamage(float damage)
