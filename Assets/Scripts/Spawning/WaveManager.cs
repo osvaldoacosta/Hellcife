@@ -8,9 +8,9 @@ public class WaveManager : MonoBehaviour
     List<GameObject> portals;
     List<WaveData> allWaves;
     WaveData waveThatWillSpawnNext;
-    float timeUntilNextWaveSpawns;
+    [SerializeField] float timeUntilNextWaveSpawns;
     float timeAtLastWaveSpawn= -1f;
-    bool isCountingNextWaveCountdown= false;
+    [SerializeField] bool isCountingNextWaveCountdown= false;
 
     [SerializeField] private bool allPortalsFinishedSpawning= false;
 
@@ -26,31 +26,115 @@ public class WaveManager : MonoBehaviour
         
 
         //TESTING SPAWN
-        EnemySpawnData gooEnemySpawnData= new EnemySpawnData("gooEnemy", 1);
-        EnemySpawnData meleeEnemySpawnData= new EnemySpawnData("meleeEnemy", 1);
-        EnemySpawnData explosiveEnemySpawnData= new EnemySpawnData("explosiveEnemy", 1);
-        GroupSpawnData gooEnemyGroup = new GroupSpawnData(3f);
-        GroupSpawnData meleeEnemyGroup = new GroupSpawnData(2f);
-        GroupSpawnData explosiveEnemyGroup = new GroupSpawnData(2f);
-        WaveData newWave = new WaveData(10f);
+        EnemySpawnData gooEnemySpawnData= new EnemySpawnData("gooEnemy");
+        EnemySpawnData meleeEnemySpawnData= new EnemySpawnData("meleeEnemy");
+        EnemySpawnData explosiveEnemySpawnData= new EnemySpawnData("explosiveEnemy");
+        EnemySpawnData gooBossEnemySpawnData= new EnemySpawnData("gooBossEnemy");
+        EnemySpawnData meleeBossEnemySpawnData= new EnemySpawnData("meleeBossEnemy");
+        EnemySpawnData explosiveBossEnemySpawnData= new EnemySpawnData("explosiveBossEnemy");
+        GroupSpawnData gooEnemyGroup = new GroupSpawnData(10f);
+        GroupSpawnData meleeEnemyGroup = new GroupSpawnData(10f);
+        GroupSpawnData explosiveEnemyGroup = new GroupSpawnData(12f);
+        GroupSpawnData gooBossEnemyGroup = new GroupSpawnData(30f);
+        GroupSpawnData meleeBossEnemyGroup = new GroupSpawnData(30f);
+        GroupSpawnData explosiveBossEnemyGroup = new GroupSpawnData(36f);
+        WaveData newWave = new WaveData(20f);
         List<WaveData> newAllWaves = new List<WaveData>();
 
         gooEnemyGroup.addEnemyToGroup(gooEnemySpawnData, 3);
-        meleeEnemyGroup.addEnemyToGroup(meleeEnemySpawnData, 5);
-        explosiveEnemyGroup.addEnemyToGroup(explosiveEnemySpawnData, 5);
+        meleeEnemyGroup.addEnemyToGroup(meleeEnemySpawnData, 3);
+        explosiveEnemyGroup.addEnemyToGroup(explosiveEnemySpawnData, 3);
+        gooBossEnemyGroup.addEnemyToGroup(gooEnemySpawnData, 1);
+        meleeBossEnemyGroup.addEnemyToGroup(meleeEnemySpawnData, 1);
+        explosiveBossEnemyGroup.addEnemyToGroup(explosiveBossEnemySpawnData, 1);
 
-        gooEnemyGroup.setCooldownBeforeThisSpawn(3f);
-        meleeEnemyGroup.setCooldownBeforeThisSpawn(1f);
-        explosiveEnemyGroup.setCooldownBeforeThisSpawn(20f);
+        gooEnemyGroup.setCooldownAfterThisSpawn(10f);
+        meleeEnemyGroup.setCooldownAfterThisSpawn(10f);
+        explosiveEnemyGroup.setCooldownAfterThisSpawn(10f);
+        gooBossEnemyGroup.setCooldownAfterThisSpawn(60f);
+        meleeBossEnemyGroup.setCooldownAfterThisSpawn(60f);
+        explosiveBossEnemyGroup.setCooldownAfterThisSpawn(60f);
 
-        newWave.addGroupToWave(gooEnemyGroup, 2);
-        newWave.addGroupToWave(meleeEnemyGroup, 2);
-        newWave.addGroupToWave(explosiveEnemyGroup, 2);
+        newWave.addGroupToWave(gooEnemyGroup, 1);
+        newWave.addGroupToWave(meleeEnemyGroup, 1);
+        newWave.addGroupToWave(explosiveEnemyGroup, 1);
 
         newAllWaves.Add(newWave);
         newWave= new WaveData(newWave);
         newAllWaves.Add(newWave);
         newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(120f);
+        newWave.addGroupToWave(meleeBossEnemyGroup, 1);
+        newWave.addGroupToWave(meleeEnemyGroup, 3);
+        newAllWaves.Add(newWave);
+
+        //wave 11
+        newWave= new WaveData(20f);
+        newWave.addGroupToWave(gooEnemyGroup, 1);
+        newWave.addGroupToWave(meleeEnemyGroup, 1);
+        newWave.addGroupToWave(explosiveEnemyGroup, 1);
+
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(120f);
+        newWave.addGroupToWave(gooBossEnemyGroup, 1);
+        newWave.addGroupToWave(gooEnemyGroup, 3);
+        newAllWaves.Add(newWave);
+
+        //wave 21
+        newWave= new WaveData(20f);
+        newWave.addGroupToWave(gooEnemyGroup, 1);
+        newWave.addGroupToWave(meleeEnemyGroup, 1);
+        newWave.addGroupToWave(explosiveEnemyGroup, 1);
+
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(newWave);
+        newAllWaves.Add(newWave);
+        newWave= new WaveData(120f);
+        newWave.addGroupToWave(explosiveBossEnemyGroup, 1);
+        newWave.addGroupToWave(explosiveEnemyGroup, 3);
         newAllWaves.Add(newWave);
 
         allWaves= new List<WaveData>(newAllWaves);
@@ -74,14 +158,14 @@ public class WaveManager : MonoBehaviour
             allPortalsFinishedSpawning = true;
             foreach(GameObject portal in portals){
                 allPortalsFinishedSpawning= allPortalsFinishedSpawning && !(portal.GetComponent<Portal>().isSpawning);
-                if(allPortalsFinishedSpawning){
-                    Debug.Log("FINISHED SPAWNING!");
-                }
+                
             }
             if(allPortalsFinishedSpawning){
+                Debug.Log("FINISHED SPAWNING!");
                 startNextWaveCountDown();
             }
         }
+        
     }
 
     public void onStartWave(){
@@ -103,6 +187,7 @@ public class WaveManager : MonoBehaviour
         if(allWaves.Count != 0){
             waveThatWillSpawnNext= allWaves[0];
         }
+        allPortalsFinishedSpawning= false;
     }
     public void startNextWaveCountDown(){
         isCountingNextWaveCountdown= true;

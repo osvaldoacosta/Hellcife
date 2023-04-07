@@ -245,6 +245,62 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &147698816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147698817}
+  - component: {fileID: 147698818}
+  m_Layer: 0
+  m_Name: EnemiesStats
+  m_TagString: EnemiesStatsObject
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &147698817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147698816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461183452}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147698818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147698816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0668a1ba66109fc4d87091be549099e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMeleeEnemyHealth: 0
+  defaultMeleeEnemySpeed: 0
+  defaultGooEnemyHealth: 0
+  defaultGooEnemySpeed: 0
+  defaultExplosiveEnemyHealth: 0
+  defaultExplosiveEnemySpeed: 0
+  defaultMeleeBossEnemyHealth: 0
+  defaultMeleeBossEnemySpeed: 0
+  defaultGooBossEnemyHealth: 0
+  defaultGooBossEnemySpeed: 0
+  defaultExplosiveBossEnemyHealth: 0
+  defaultExplosiveBossEnemySpeed: 0
 --- !u!1 &163033574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1277,7 @@ MonoBehaviour:
   bloodParticlePool: {fileID: 0}
   bleeds: 0
   current_health: 100
+  max_health: 100
 --- !u!114 &454635405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1235,7 +1292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordAttackHitbox: {fileID: 1201404431}
   meleeAttackKey: 102
-  meleeAttackCooldown: 5
+  meleeAttackCooldown: 0
 --- !u!1 &461183449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1332,10 @@ Transform:
   - {fileID: 1140978172}
   - {fileID: 1621656759}
   - {fileID: 2017686950}
+  - {fileID: 1289350925}
+  - {fileID: 1941059165}
+  - {fileID: 765037825}
+  - {fileID: 147698817}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2266,6 +2327,54 @@ Transform:
   m_Father: {fileID: 535836851}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &765037824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765037825}
+  - component: {fileID: 765037826}
+  m_Layer: 0
+  m_Name: ExplosiveBossEnemyPool
+  m_TagString: ExplosiveBossEnemyPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765037825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765037824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461183452}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765037826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765037824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dee982d7eb85404085509184e7b8d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 4058017755914470933, guid: 4f42b233de9d19b45a2f4b169174de98,
+    type: 3}
+  amountToPool: 10
 --- !u!1 &774656516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,9 +2486,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpawning: 0
+  currentWave: 0
+  enemiesStats: {fileID: 0}
   gooEnemyPool: {fileID: 0}
   meleeEnemyPool: {fileID: 0}
   explosiveEnemyPool: {fileID: 0}
+  gooBossEnemyPool: {fileID: 0}
+  meleeBossEnemyPool: {fileID: 0}
+  explosiveBossEnemyPool: {fileID: 0}
 --- !u!65 &784695677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3525,6 +3639,54 @@ Transform:
   m_Father: {fileID: 461183452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1289350924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289350925}
+  - component: {fileID: 1289350926}
+  m_Layer: 0
+  m_Name: GooBossEnemyPool
+  m_TagString: GooBossEnemyPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289350925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289350924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461183452}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1289350926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289350924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dee982d7eb85404085509184e7b8d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 6354431408094512697, guid: d16360c24c9df3e4ab1f49a55fbb654e,
+    type: 3}
+  amountToPool: 10
 --- !u!1 &1298372948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,9 +4858,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpawning: 0
+  currentWave: 0
+  enemiesStats: {fileID: 0}
   gooEnemyPool: {fileID: 0}
   meleeEnemyPool: {fileID: 0}
   explosiveEnemyPool: {fileID: 0}
+  gooBossEnemyPool: {fileID: 0}
+  meleeBossEnemyPool: {fileID: 0}
+  explosiveBossEnemyPool: {fileID: 0}
 --- !u!65 &1694910553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4823,6 +4990,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectToPool: {fileID: 7050724210541331476, guid: 610df4ca64ed4b844b64c72231716e75,
+    type: 3}
+  amountToPool: 10
+--- !u!1 &1941059164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941059165}
+  - component: {fileID: 1941059166}
+  m_Layer: 0
+  m_Name: MeleeBossEnemyPool
+  m_TagString: MeleeBossEnemyPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1941059165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941059164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461183452}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941059166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941059164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dee982d7eb85404085509184e7b8d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 4834037389134743150, guid: bc2898b002e0a4e48bfb5f8a90ac534f,
     type: 3}
   amountToPool: 10
 --- !u!1 &1953689585

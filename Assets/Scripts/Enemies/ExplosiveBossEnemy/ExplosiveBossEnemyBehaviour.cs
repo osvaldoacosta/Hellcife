@@ -46,18 +46,27 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
     }
 
     [SerializeField] private EnemyStates activeEnemyState= 0;
+    private Animator animator;
+    private float runAnimationOffset;
     
     private bool ableToSeeSorroundings;
 
     // Update is called once per frame
     void Start(){
+        animator = GetComponent<Animator>();
+        runAnimationOffset= Random.Range(0, 1f);
+        animator.SetFloat("RunOffset", runAnimationOffset);
         explosiveEnemyPool= GameObject.FindWithTag("ExplosiveEnemyObjectPool").GetComponent<ObjectPool>();
         enemyNavMeshAgent= GetComponent<NavMeshAgent>();
         target= GameObject.FindWithTag("Player");
         attackHitbox= GetComponentInChildren<AttackHitbox>(true);
     }
+    void OnEnable(){
+        activeEnemyState= EnemyStates.idle;
+    }
     void Update()
     {
+        
         if(isActionLocked()){
             switch (activeEnemyState){
                 case EnemyStates.windingUpAttack:
@@ -69,19 +78,14 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
                     return;
                 case EnemyStates.finishingAttack:
                     if( Time.time < endOfAttack ){
-                        //silly attack animation for debug purposes
-                        transform.localScale= new Vector3(1.6f, 2.4f, 1.6f);
                         return;
                     }
-                    //silly attack animation for debug purposes
-                    transform.localScale= new Vector3(2f, 2f, 2f);
                     break;
                 case EnemyStates.windingUpSpawnMinions:
                     if(Time.time< endOfSpawnMinionsWindup){
                         return;
                     }
                     spawnMinions();
-                    transform.localScale= new Vector3(2f, 2f, 2f);
                     activeEnemyState= EnemyStates.idle;
                     return;
                 default:
@@ -90,6 +94,7 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
         }
         acquireSelfCoordsAndTargetCoords();
         decideActiveState();
+        animateAction();
         enemyAction();
     }
     private bool isActionLocked(){
@@ -147,6 +152,13 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
             }
         }
     }
+    private void animateAction(){
+        if((int) activeEnemyState == 4){
+             animator.SetInteger("EnemyState", 2);
+             return;
+        }
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
+    }
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:
@@ -175,13 +187,11 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
     private void startSpawnMinionWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
         //silly attack animation for debug purposes
-        transform.localScale = new Vector3(2.6f, 1.6f, 2.6f);
         endOfSpawnMinionsWindup= Time.time + spawnMinionWindupDuration;
     }
     private void startAttackWindup(){
         enemyNavMeshAgent.SetDestination(enemyCoord);
         //silly attack animation for debug purposes
-        transform.localScale = new Vector3(2.6f, 1.6f, 2.6f);
         endOfAttackWindup= Time.time + attackWindupDuration;
     }
     private void calculateDistanceVector(){
@@ -190,7 +200,6 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
     }
     private void spawnMinions(){
         //silly attack animation for debug purposes
-        transform.localScale= new Vector3(2f, 2f, 2f);
         for(int i=0; i<numberOfMinionsPerSpawn; i++){
             GameObject newMinion= explosiveEnemyPool.GetPooledObject();
             newMinion.transform.position= transform.position;
@@ -200,8 +209,6 @@ public class ExplosiveBossEnemyBehaviour : MonoBehaviour
         endOfSpawnMinionsCooldown= Time.time + spawnMinionsCooldownDuration;
     }
     private void explosiveAttack(){
-        //silly attack animation for debug purposes
-        transform.localScale= new Vector3(2f, 2f, 2f);
         //make enemy stop
         enemyNavMeshAgent.SetDestination(enemyCoord);
 
