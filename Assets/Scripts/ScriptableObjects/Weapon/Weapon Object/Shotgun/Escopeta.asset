@@ -17,6 +17,7 @@ MonoBehaviour:
   maxDistance: 50
   isAutomatic: 0
   wasShot: 0
+  bulletsPerShot: 7
   currentAmmo: 6
   magSize: 6
   roundsPerMinute: 120
