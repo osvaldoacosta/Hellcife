@@ -33,11 +33,11 @@ public class Portal : MonoBehaviour
 
     public void LateUpdate(){
         if(isSpawning){
-            if(groupsToSpawn.Count == 0){
-                isSpawning= false;
+            if(spawnCooldown + timeAtLastGroupSpawn > Time.time){
                 return;
             }
-            if(spawnCooldown + timeAtLastGroupSpawn > Time.time){
+            if(groupsToSpawn.Count == 0){
+                isSpawning= false;
                 return;
             }
             currentGroup= groupsToSpawn[0];
@@ -95,10 +95,6 @@ public class Portal : MonoBehaviour
                         newEnemy.SetActive(true);
                         break;
                 }
-            }
-            if(groupsToSpawn.Count== 0){
-                isSpawning= false;
-                return;
             }
             timeAtLastGroupSpawn= Time.time;
         }
