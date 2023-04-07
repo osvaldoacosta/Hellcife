@@ -114,6 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e894968d44f4c40beaf9d23d4b4299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodType: red
+  bloodParticlePool: {fileID: 0}
+  bleeds: 0
   current_health: 200
 --- !u!195 &4058017755914470935
 NavMeshAgent:

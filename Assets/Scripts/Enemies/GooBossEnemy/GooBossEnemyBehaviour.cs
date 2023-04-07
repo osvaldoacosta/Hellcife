@@ -105,6 +105,10 @@ public class GooBossEnemyBehaviour : MonoBehaviour
         } else {
             ableToSeeSorroundings= false;
         }
+        if(!target){
+            ableToSeeSorroundings= false;
+            return;
+        }
         if(Physics.Raycast(target.transform.position, new Vector3(0f, -1f, 0f), out var hitInfo, Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)){
             targetCoord = hitInfo.point;
             ableToSeeSorroundings= true;

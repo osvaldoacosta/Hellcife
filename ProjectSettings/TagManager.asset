@@ -9,6 +9,11 @@ TagManager:
   - GooProjectilePool
   - GooPuddlePool
   - SwordAttackHitbox
+  - BloodParticlePool
+  - GooParticlePool
+  - MeleeEnemyObjectPool
+  - GooEnemyObjectPool
+  - Portal
   layers:
   - Default
   - TransparentFX
