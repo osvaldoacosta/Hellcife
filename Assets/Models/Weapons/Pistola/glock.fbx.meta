@@ -1,11 +1,36 @@
 fileFormatVersion: 2
-guid: f29fc9fb64fa2aa469ac408871b22e83
+guid: 3c56e17cb34521644bb6eb42ea43aa0c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damascus Steel
+    second: {fileID: 2100000, guid: 7852288187aad1845b9f8744a259cecc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 1bc819e02fe4fe940bf34d62a38a20e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rough Iron Steel
+    second: {fileID: 2100000, guid: 7a7c156de266c4b4a91af0657c764169, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steel
+    second: {fileID: 2100000, guid: 9045515ffd7d3e84ab4ad2dd528c1652, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Roughness
+    second: {fileID: 2800000, guid: 423bf5673bceabc4cad69804615e67d2, type: 3}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
