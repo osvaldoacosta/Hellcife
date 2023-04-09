@@ -44,8 +44,8 @@ public class WaveManager : MonoBehaviour
         gooEnemyGroup.addEnemyToGroup(gooEnemySpawnData, 3);
         meleeEnemyGroup.addEnemyToGroup(meleeEnemySpawnData, 3);
         explosiveEnemyGroup.addEnemyToGroup(explosiveEnemySpawnData, 3);
-        gooBossEnemyGroup.addEnemyToGroup(gooEnemySpawnData, 1);
-        meleeBossEnemyGroup.addEnemyToGroup(meleeEnemySpawnData, 1);
+        gooBossEnemyGroup.addEnemyToGroup(gooBossEnemySpawnData, 1);
+        meleeBossEnemyGroup.addEnemyToGroup(meleeBossEnemySpawnData, 1);
         explosiveBossEnemyGroup.addEnemyToGroup(explosiveBossEnemySpawnData, 1);
 
         gooEnemyGroup.setCooldownAfterThisSpawn(10f);

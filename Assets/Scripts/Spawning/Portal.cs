@@ -77,6 +77,7 @@ public class Portal : MonoBehaviour
                         newEnemy.transform.position = transform.position;
                         newEnemy.transform.rotation = transform.rotation;
                         newEnemy.SetActive(true);
+                        GameEventManager.instance.bossSpawn();
                         break;
                     case "meleeBossEnemy":
                         newEnemy = meleeBossEnemyPool.GetPooledObject();
@@ -85,6 +86,7 @@ public class Portal : MonoBehaviour
                         newEnemy.transform.position = transform.position;
                         newEnemy.transform.rotation = transform.rotation;
                         newEnemy.SetActive(true);
+                        GameEventManager.instance.bossSpawn();
                         break;
                     case "explosiveBossEnemy":
                         newEnemy = explosiveBossEnemyPool.GetPooledObject();
@@ -93,6 +95,7 @@ public class Portal : MonoBehaviour
                         newEnemy.transform.position = transform.position;
                         newEnemy.transform.rotation = transform.rotation;
                         newEnemy.SetActive(true);
+                        GameEventManager.instance.bossSpawn();
                         break;
                 }
             }
