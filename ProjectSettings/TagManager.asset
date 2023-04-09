@@ -18,6 +18,8 @@ TagManager:
   - MeleeBossEnemyPool
   - ExplosiveBossEnemyPool
   - EnemiesStatsObject
+  - BossMusicSource
+  - NormalMusicSource
   layers:
   - Default
   - TransparentFX
