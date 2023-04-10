@@ -58,7 +58,7 @@ public class WaveManager : MonoBehaviour
         newWave.addGroupToWave(gooEnemyGroup, 1);
         newWave.addGroupToWave(meleeEnemyGroup, 1);
         newWave.addGroupToWave(explosiveEnemyGroup, 1);
-
+        
         newAllWaves.Add(newWave);
         newWave= new WaveData(newWave);
         newAllWaves.Add(newWave);
