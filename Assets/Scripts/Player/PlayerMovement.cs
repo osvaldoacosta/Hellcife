@@ -57,7 +57,10 @@ public class PlayerMovement : MonoBehaviour
             isRunning = movementDirection != Vector3.zero;
 
             //Rotate player based on it's inputs
-            rotatePlayer(movementDirection);
+            if (movementDirection != Vector3.zero)
+            {
+                rotatePlayer(movementDirection);
+            }
 
             //Appling aiming and goo puddle debuffs
             movementSpeed = defaultMovementSpeed;

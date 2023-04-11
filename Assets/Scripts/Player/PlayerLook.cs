@@ -10,10 +10,12 @@ public class PlayerLook : MonoBehaviour
 {
     private Camera mainCamera;
     public static Action<bool> aimingInput;
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
+    private PlayerRiggingModifier rigMod;
     void Start()
     {
         this.mainCamera = Camera.main;
+        rigMod= GetComponent<PlayerRiggingModifier>();
     }
 
     // Update is called once per frame
@@ -28,9 +30,12 @@ public class PlayerLook : MonoBehaviour
         aimingInput?.Invoke(true);
         Vector3 pointToLook = GetPointToLook();
         transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        if (Input.GetMouseButtonDown(1)) //Previne perca de fps com o hold
+        rigMod.OnAimStart();
       }else if(Input.GetMouseButtonUp(1)){
         aimingInput?.Invoke(false);
         playerMovement.isAiming= false;
+        rigMod.OnAimEnd();
       }
 
     }

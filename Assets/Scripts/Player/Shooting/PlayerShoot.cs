@@ -9,8 +9,7 @@ public class PlayerShoot : MonoBehaviour
     
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private GunInfo currentGunInfo;
-    
-    
+
     private void Update()
     {
         //MELHORAR ISSO AQUI ._.
@@ -24,10 +23,12 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             shootInput?.Invoke();
+
         }
 
         if (Input.GetKeyDown(reloadKey))
         {
+
             Debug.Log("Reloading");
             reloadInput?.Invoke();
         }

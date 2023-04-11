@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GunInfo gunInfo;
     [SerializeField] private Transform muzzle; //Precisa criar um objeto vazio e botar na boca do cano da arma(se a arma n�o vier com um objeto muzzle)
     [SerializeField] private Transform bulletProjectile; //Objeto da balita
+    [SerializeField] private PlayerRiggingModifier playerRigging;
     private float timeSinceLastShot;
 
     void Start()
@@ -18,6 +19,7 @@ public class Gun : MonoBehaviour
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
         PlayerLook.aimingInput += Aim;
+        
         timeSinceLastShot = 0f;
     }
 
@@ -74,11 +76,13 @@ public class Gun : MonoBehaviour
                 if (gunInfo.isMagReloaded)
                 {
                     OnMagGunShoot();
+                    playerRigging.OnGunShoot();
                 }
                 else
                 {
                     OnShotgunShoot();
                 }
+
             }
         }
     }
