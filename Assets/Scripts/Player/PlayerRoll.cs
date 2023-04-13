@@ -10,11 +10,13 @@ public class PlayerRoll : MonoBehaviour
     private Rigidbody rigidBody;
     private Animator animator;
     private PlayerMovement pm;
+    private PlayerRiggingModifier riggingModifier;
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
         animator= GetComponent<Animator>();
         pm = GetComponent<PlayerMovement>();
+        riggingModifier= GetComponent<PlayerRiggingModifier>();
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class PlayerRoll : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetBool("isRolling", true);
+                riggingModifier.SetIdleRigWeight(0.0f);
                 Debug.Log(rigidBody.velocity);
                 StartCoroutine(Roll());
             }
@@ -50,8 +53,9 @@ public class PlayerRoll : MonoBehaviour
         
         pm.canMove = true;
         animator.SetBool("isRolling", false);
+        riggingModifier.SetIdleRigWeight(1.0f);
     }
 
 
-    
+
 }

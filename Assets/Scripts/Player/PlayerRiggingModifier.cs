@@ -27,19 +27,28 @@ public class PlayerRiggingModifier : MonoBehaviour
 
     private RigBuilder rigBuilder;
 
-    [SerializeField] private Rig pistolAimRig;
-    [SerializeField] private Rig pistolIdleRig;
-    [SerializeField] private Rig pistolShootRig;
+    [SerializeField] private Rig aimRig;
+    [SerializeField] private Rig idleRig;
+    [SerializeField] private Rig shootRig;
 
-    private Rig aimRig;
-    private Rig shootRig;
+
+    
 
     private float aimRigWeight;
     private float shootWeight;
     private Gun currentGun;
+
     private void Awake()
     {
         rigBuilder = GetComponent<RigBuilder>();
+    }
+
+    public void SetIdleRigWeight(float weight)
+    {
+        if(idleRig != null)
+        {
+            idleRig.weight = weight;
+        }
     }
 
     private void Update()
@@ -48,21 +57,21 @@ public class PlayerRiggingModifier : MonoBehaviour
         if (aimRig != null && aimRig.weight != aimRigWeight)
         {
             aimRig.weight = Mathf.Lerp(aimRig.weight, aimRigWeight, Time.deltaTime * 10f);
-            if (shootRig != null && shootRig.weight >= 0.99f)
+            if (shootRig != null)
             {
-                shootWeight = 0f;
+                if (shootRig.weight >= 0.99f) shootWeight = 0f;
+                shootRig.weight = Mathf.Lerp(shootRig.weight, shootWeight, Time.deltaTime * 30f);
             }
-            shootRig.weight = Mathf.Lerp(shootRig.weight, shootWeight, Time.deltaTime * 30f);
         }
 
         
     }
 
 
-    //qd for pistola - mudar ref_right_hand pro da pistola, remover o ref_left e deixar o hint weight em 0.163
 
     private void ChangeToPistolIdlePosition()
     {
+        
         rightArmIK.data.target = pistolRefRightHand;
         leftArmIK.data.target = null;
         rigBuilder.Build();
@@ -70,33 +79,34 @@ public class PlayerRiggingModifier : MonoBehaviour
 
     private void ChangeToAimingPistol()
     {
-        aimRig = pistolAimRig;
+        
         leftArmIK.data.target = pistolRefLeftHand;
         rigBuilder.Build();
     }
     
-    private void ChangeToShootingPistol()
-    {
-        shootRig = pistolShootRig;
-    }
+    
 
-    //qd for shotgun - mudar o ref_right_hand e o left hand, deixar o hint right em 0.716
 
     private void ChangeToShotgunIdlePosition()
     {
         
+        rightArmIK.data.target = shotgunRefRightHand;
+        leftArmIK.data.target = shotgunRefLeftHand;
+        rigBuilder.Build();
     }
-    //qd for carabina - mudar o ref_right_hand e o left pro da carabina, e deixar os hints no máximo
 
     private void ChangeToRifleIdlePosition()
     {
-        
+        rightArmIK.data.target = rifleRefRightHand;
+        leftArmIK.data.target = rifleRefLeftHand;
+        rigBuilder.Build();
     }
-    //qd for nada - botar tudo zerado, hint e weight
 
     private void ChangeToBareHands()
     {
-        
+        rightArmIK.data.target = null;
+        leftArmIK.data.target = null;
+        rigBuilder.Build();
     }
 
     public void ChangeWeaponRig(Gun gunToEquip)
@@ -153,10 +163,6 @@ public class PlayerRiggingModifier : MonoBehaviour
         if (currentGun != null)
         {
             shootWeight = 1f;
-            if (currentGun == pistol)
-            {
-                ChangeToShootingPistol();
-            }
         }
         
     }
