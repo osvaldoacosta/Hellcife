@@ -18,9 +18,9 @@ MonoBehaviour:
   isAutomatic: 1
   wasShot: 0
   bulletsPerShot: 1
-  currentAmmo: 15
+  currentAmmo: 1615
   magSize: 15
-  roundsPerMinute: 550
+  roundsPerMinute: 1000
   reloadTime: 3
   isMagReloaded: 1
   isReloading: 0

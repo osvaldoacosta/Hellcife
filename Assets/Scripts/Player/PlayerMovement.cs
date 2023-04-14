@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRunning = false;
     public bool canMove = true;
     private Vector3 movementDirection;
-
+    private PlayerRiggingModifier rigMod;
     public Vector3 GetMovDir() { return movementDirection; }
 
     // Start is called before the first frame update
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Starting player movement");
         rb = GetComponent<Rigidbody>();
+        rigMod= GetComponent<PlayerRiggingModifier>();
     }
     // Update is called once per frame
     void Update()
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
             isRunning = movementDirection != Vector3.zero;
 
+                
             //Rotate player based on it's inputs
             if (movementDirection != Vector3.zero)
             {
@@ -87,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movePlayer(movementDirection);
         }
+        
     }
     private void rotatePlayer(Vector3 movementDirection)
     {
@@ -104,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void movePlayer(Vector3 movementDirection)
     {
+
         rb.velocity = (movementDirection * movementSpeed);
     }
 }

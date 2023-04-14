@@ -81,6 +81,7 @@ public class Gun : MonoBehaviour
                 else
                 {
                     OnShotgunShoot();
+                    playerRigging.OnGunShoot();
                 }
 
             }
