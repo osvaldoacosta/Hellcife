@@ -16,6 +16,7 @@ public class BossMusicBehaviour : MonoBehaviour
     void Start()
     {
         GameEventManager.instance.onBossSpawn += onBossSpawn;
+        GameEventManager.instance.onGameOver += onGameOver;
 
         bossMusicSource= GameObject.FindGameObjectsWithTag("BossMusicSource")[0].GetComponent<AudioSource>();
         bossMusicSource.mute= true;
@@ -35,6 +36,9 @@ public class BossMusicBehaviour : MonoBehaviour
                 endBossMusic();
             }
         }
+    }
+    public void onGameOver(){
+        bossMusicSource.pitch= 0.7f;
     }
     public void onBossSpawn(){
         foreach (Transform soundTrackTransform in transform){
