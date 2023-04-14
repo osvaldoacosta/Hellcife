@@ -18,6 +18,15 @@ public class EphemeralParticle : MonoBehaviour
         ps.Emit(numberOfParticles);
 
     }
+    public void Emit(int numberOfParticles, float duration){
+        ParticleSystem ps = gameObject.GetComponent<ParticleSystem>();
+        if(ps==null) return;
+        gameObject.SetActive(true);
+        isEmmiting = true;
+        timeToStopEmmiting= Time.time + duration;
+        ps.Emit(numberOfParticles);
+
+    }
     // Update is called once per frame
     void Update()
     {

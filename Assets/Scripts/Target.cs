@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Target : MonoBehaviour, IDamageable
 {
+    public bool isOnGameOver= false;
+    [SerializeField] bool isPlayer;
     [SerializeField] string bloodType;
     [SerializeField] ObjectPool bloodParticlePool;
     private EphemeralParticle ephemeralParticle;
@@ -13,6 +16,8 @@ public class Target : MonoBehaviour, IDamageable
 
     void Start()
     {
+        GameEventManager.instance.onGameOver+= onGameOver;
+        isPlayer= (gameObject.tag == "Player");
         switch (bloodType)
         {
             case "red":
@@ -65,11 +70,26 @@ public class Target : MonoBehaviour, IDamageable
     {
         if (current_health <= 0)
         {
+            if(isPlayer){
+                if(isOnGameOver) return true;
+                isOnGameOver= true;
+                EphemeralParticle deathBlood= GameObject.FindGameObjectWithTag("DeathBloodObjectPool").GetComponent<ObjectPool>().GetPooledObject().GetComponent<EphemeralParticle>();
+                deathBlood.transform.position= transform.position;
+                deathBlood.Emit(500, 7f);
+                GameEventManager.instance.gameOver();
+                GameObject.FindGameObjectWithTag("ScreenFade").GetComponent<Animator>().SetBool("GameOver", true);
+            }
             gameObject.SetActive(false);
             return true;
         }
         return false;
     }
-
-
+    IEnumerator switchScenes(int secs)
+    {
+        yield return new WaitForSeconds(secs);
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void onGameOver(){
+        StartCoroutine(switchScenes(3));
+    }
 }
