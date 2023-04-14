@@ -102,6 +102,7 @@ public class PlayerRiggingModifier : MonoBehaviour
         rigBuilder.Build();
     }
 
+
     private void ChangeToBareHands()
     {
         rightArmIK.data.target = null;
