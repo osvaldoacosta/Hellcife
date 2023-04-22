@@ -29,7 +29,7 @@ public class PlayerRiggingModifier : MonoBehaviour
     [SerializeField] private Transform rifleRefRightHand;
     [SerializeField] private Transform rifleRefLeftHand;
 
-
+    [SerializeField] private Transform swordRightHand;
     private RigBuilder rigBuilder;
 
     [SerializeField] private Rig aimRig;
@@ -64,7 +64,10 @@ public class PlayerRiggingModifier : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StartCoroutine(PerformSwordSlash());
+        }
         if (aimRig != null && aimRig.weight != aimRigWeight)
         {
             aimRig.weight = Mathf.Lerp(aimRig.weight, aimRigWeight, Time.deltaTime * 10f);
@@ -112,7 +115,15 @@ public class PlayerRiggingModifier : MonoBehaviour
         rigBuilder.Build();
     }
     
-    
+    private IEnumerator PerformSwordSlash()
+    {
+        rightArmIK.data.target = swordRightHand;
+        leftArmIK.data.target = null;
+        rigBuilder.Build();
+        animator.Play("sword_slash");
+        yield return new WaitForSeconds(2.03f);
+        ChangeWeaponRig(currentGun);
+    }
 
 
     private void ChangeToShotgunIdlePosition()
