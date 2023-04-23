@@ -5,6 +5,23 @@ TagManager:
   serializedVersion: 2
   tags:
   - GooPuddle
+  - ExplosiveEnemyObjectPool
+  - GooProjectilePool
+  - GooPuddlePool
+  - SwordAttackHitbox
+  - BloodParticlePool
+  - GooParticlePool
+  - MeleeEnemyObjectPool
+  - GooEnemyObjectPool
+  - Portal
+  - GooBossEnemyPool
+  - MeleeBossEnemyPool
+  - ExplosiveBossEnemyPool
+  - EnemiesStatsObject
+  - BossMusicSource
+  - NormalMusicSource
+  - DeathBloodObjectPool
+  - ScreenFade
   layers:
   - Default
   - TransparentFX

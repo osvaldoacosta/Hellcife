@@ -33,4 +33,12 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+    public bool hasAnyEnabled(){
+        for(int i= 0; i < amountToPool; i++){
+            if(pooledObjects[i].activeInHierarchy){
+                return true;
+            }
+        }
+        return false;
+    }
 }
