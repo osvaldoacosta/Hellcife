@@ -7,6 +7,7 @@ public class GunInfo : ScriptableObject
 {
     [Header("Name")]
     public new string name;
+    public string description;
 
     [Header("Shooting")]
     public float damage;
@@ -14,6 +15,7 @@ public class GunInfo : ScriptableObject
     public bool isAutomatic;
     public bool wasShot;
     public ushort bulletsPerShot;
+    
     [Header("Reloading")]
     public int currentAmmo;
     public int magSize;

@@ -28,6 +28,10 @@ public class Gun : MonoBehaviour
         return gunInfo;
     }
 
+    public void SetGunInfo(GunInfo gunInfo)
+    {
+        this.gunInfo = gunInfo;
+    }
     private void Aim(bool isAiming) => gunInfo.isAiming = isAiming;
 
     private bool CanShoot() => !gunInfo.isReloading && timeSinceLastShot > 1f / (gunInfo.roundsPerMinute/60) && gunInfo.isAiming ;
@@ -65,7 +69,7 @@ public class Gun : MonoBehaviour
         }
 
     }
-    private void Shoot()
+    private void Shoot(float playerBaseDamage)
     {
         if (gunInfo.currentAmmo > 0)
         {
@@ -95,18 +99,19 @@ public class Gun : MonoBehaviour
         //Transform bullet = Instantiate(bulletProjectile, muzzle.position,Quaternion.LookRotation(muzzleDirection)); //Usando o m�todo tradicional de instanciar uma bala nova
         //Debug.DrawRay(bullet.position, muzzleDirection*10,Color.blue);
         //Usando um game object pool, com as balas
+        for (int i = 0; i <gunInfo.bulletsPerShot; i++)
+        {
+            GameObject bullet = bulletPool.GetPooledObject();
 
-        GameObject bullet = bulletPool.GetPooledObject();
-
-        bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); //Seta o dano dessa balita
-        bullet.transform.position = muzzle.position; //Bota a bala na posi��o certa
-        
-        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 50f; //Fazer algum calculo doido para velocidade da bala
-        bullet.SetActive(true);
-        
-        gunInfo.currentAmmo -= 1;
-        timeSinceLastShot = 0f;
-
+            bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage * playerBaseDamage); //Seta o dano dessa balita
+            bullet.transform.position = muzzle.position; //Bota a bala na posi��o certa
+            
+            bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * 50f; //Fazer algum calculo doido para velocidade da bala
+            bullet.SetActive(true);
+        }    
+        //Sim, vai gastar só 1 munição mesmo tendo um moi de bala
+            gunInfo.currentAmmo -= 1;
+            timeSinceLastShot = 0f;
 
     }
 

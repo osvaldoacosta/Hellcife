@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public static Action shootInput;
+    public static Action<float> shootInput;
     public static Action reloadInput;
-    
+    [SerializeField] private float playerBaseDamage = 1;
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private GunInfo currentGunInfo;
 
@@ -17,7 +17,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                shootInput?.Invoke();
+                shootInput?.Invoke(playerBaseDamage);
             }
         }
         if (Input.GetMouseButtonDown(0))
