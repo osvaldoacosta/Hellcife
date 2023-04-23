@@ -90,7 +90,7 @@ public class PlayerGunInventory : MonoBehaviour
 
             //Troca pra arma escolhida
             gunToEquip?.gameObject?.SetActive(true);
-
+            transform.GetComponent<PlayerShoot>().SetCurrentGunInfo(gunToEquip.GetGunInfo());
         }
 
         //Muda o jeito em que ele segura a arma

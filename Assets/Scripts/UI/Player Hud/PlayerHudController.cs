@@ -71,6 +71,7 @@ public class PlayerHudController : MonoBehaviour
     }
 
     private void WeaponChange(ushort index, Gun currentGun){
+
         currentGunInfo = currentGun?.GetGunInfo();
         ChangeGunStats(); 
         UnhighlightBtns();

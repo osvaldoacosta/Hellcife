@@ -10,7 +10,10 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private GunInfo currentGunInfo;
 
-
+    public void SetCurrentGunInfo(GunInfo info)
+    {
+        currentGunInfo = info;
+    }
     
 
     public float GetPlayerBaseDamage()
