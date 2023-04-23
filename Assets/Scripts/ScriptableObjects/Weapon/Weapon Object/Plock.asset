@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab5302365f269b84387216d3ac355f3d, type: 3}
-  m_Name: Shotgun
+  m_Name: Plock
   m_EditorClassIdentifier: 
-  name: Reminto 869
-  description: "Disparo em \xE1rea, por\xE9m menor distancia"
-  damage: 9
+  name: Plock
+  description: 
+  damage: 10
   maxDistance: 50
   isAutomatic: 0
   wasShot: 0
-  bulletsPerShot: 1
-  currentAmmo: 6
-  magSize: 6
-  roundsPerMinute: 80
+  bulletsPerShot: 0
+  currentAmmo: 10
+  magSize: 15
+  roundsPerMinute: 550
   reloadTime: 3
   isReloading: 0
   isAiming: 0

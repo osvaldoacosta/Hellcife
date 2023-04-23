@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99656a51383a2c4bb02185b04ba3c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f47ac5baa2051c4c92e00d5cbb960f5, type: 3}
   m_Name: PlockForSale
   m_EditorClassIdentifier: 
   name: Plock
-  description: Arminha q faz pei pei
+  description: Pistola leve que causa estrago
   price: 1000
   isAvaliable: 1
-  gunInfo: {fileID: 11400000, guid: f0f0203cc8835254085a4bc8ef23658e, type: 2}
+  gunInfo: {fileID: 11400000, guid: 2fa7601aefea8bc43be0fe3890e397fe, type: 2}

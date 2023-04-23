@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 
 public class GunUpgradeShop : UpgradeShop
 {
-    [SerializeField] private UpgradeShopUI gunUI;
     [SerializeField] private UpgradeInfo gunDmgUpgradeRef;
     [SerializeField] private UpgradeInfo gunFirerateUpgradeRef;
     [SerializeField] private UpgradeInfo gunReloadSpeedUpgradeRef;
@@ -28,11 +27,14 @@ public class GunUpgradeShop : UpgradeShop
     private void ReduceGunReloadSpeed(UpgradeInfo upgrade) => gunToUpgrade.GetGunInfo().reloadTime = gunToUpgrade.GetGunInfo().reloadTime * (float)upgrade.valueToAdd/100f;
     private void IncreaseGunCapacity(UpgradeInfo upgrade)
     {
+        Debug.Log("Carregador antigo: " + gunToUpgrade.GetGunInfo().magSize);
         gunToUpgrade.GetGunInfo().magSize = (int)Math.Round(gunToUpgrade.GetGunInfo().magSize * (float)upgrade.valueToAdd/100);
         gunToUpgrade.GetGunInfo().currentAmmo = gunToUpgrade.GetGunInfo().magSize;
+        Debug.Log("Carregador novo: " + gunToUpgrade.GetGunInfo().magSize);
+
     }
 
- 
+
 
     private void OnEnable()
     {
@@ -43,11 +45,12 @@ public class GunUpgradeShop : UpgradeShop
     public void SetGunToUpgrade(Gun gun)
     {
         gunToUpgrade = gun;
+        gun.SetGunInfo(Instantiate(gun.GetGunInfo(), transform)); //Instanciando o scriptable object 
     }
 
     public void OnGunUpgradeButtonClicked(UpgradeInfo gunUpInfo)
     {
-
+       
         BuyUpgrade(gunUpInfo, upgradeBasedOnGun[gunToUpgrade]);
     }
 

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99656a51383a2c4bb02185b04ba3c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f47ac5baa2051c4c92e00d5cbb960f5, type: 3}
   m_Name: CarabinaForSale
   m_EditorClassIdentifier: 
-  name: Carabina
-  description: Arma bem longa
+  name: Carabina LAL
+  description: Carabina de longo alcance
   price: 6000
   isAvaliable: 1
-  gunInfo: {fileID: 11400000, guid: 0b954725c75a6c24a9d0d3c2e0b3ca8e, type: 2}
+  gunInfo: {fileID: 11400000, guid: c1684a6047114f94db2ea0d865bfc197, type: 2}

@@ -13,7 +13,7 @@ public class ConsumableShop : BuyShop
     private void HealPlayer(InstaConsumable consumable) => GetShopInteraction().HealPlayer(consumable.recoverValue);
 
     private void UseEffectInPlayer(EffectConsumable consumable) =>
-        StartCoroutine(GetShopInteraction().UseItemWithEffect(consumable.healIncrementPerc, consumable.damageIncrementPerc, consumable.speedIncrementPerc, consumable.effectDuration));
+        StartCoroutine(GetShopInteraction().UseItemWithEffect(consumable));
 
     
 
@@ -28,6 +28,7 @@ public class ConsumableShop : BuyShop
     {
         Buy(consumable);
         UseEffectInPlayer(consumable);
+        
     }
 
 }

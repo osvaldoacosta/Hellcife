@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e086e3406f5b8df4a89c335ff7f0471a, type: 3}
+  m_Script: {fileID: 11500000, guid: c0216a02eb2aad44fb67266c89cd1e20, type: 3}
   m_Name: CocadaPreta
   m_EditorClassIdentifier: 
   name: Cocada preta
-  description: "N\xE3o, voc\xEA n\xE3o ir\xE1 se tornar o rei da cocada preta, mas
-    pelo menos vai ganhar um aumento em todas as suas estatisticas por 5 minutos."
+  description: "N\xE3o, voc\xEA n\xE3o vira o rei da cocada preta, mas pelo menos
+    ganha uma aumento de 150% em todas as estat\xEDtsticas por 4 minutos."
   price: 9000
-  isAvaliable: 1
-  healIncrementPerc: 200
+  isAvaliable: 0
+  healIncrementPerc: 150
   speedIncrementPerc: 150
-  damageIncrementPerc: 200
-  effectDuration: 180
+  damageIncrementPerc: 150
+  effectDuration: 240

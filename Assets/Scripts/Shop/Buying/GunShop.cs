@@ -13,6 +13,8 @@ public class GunShop : BuyShop
     private void OnEnable()
     {
         GreyOutWeapons();
+        
+
     }
 
     public void BuyWeapon(BuyableGun buyableGun)
@@ -20,6 +22,7 @@ public class GunShop : BuyShop
         this.buyableGun = buyableGun;
 
         List<Gun> guns= GetShopInteraction().GetPlayerGunInInventory();
+        /*
         foreach(Gun gun in guns)
         {
             if (gun.Equals(selectedGun) || !buyableGun.isAvaliable)
@@ -29,7 +32,7 @@ public class GunShop : BuyShop
             }
              gunButton.interactable = true;
         }
-        
+        */
         CheckForInventorySpace(selectedGun, guns, GetShopInteraction().GetInventoryCapacity());
     }
     private void CheckForInventorySpace(Gun gun, List<Gun> inventoryGuns, ushort capacity)

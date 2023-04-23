@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e086e3406f5b8df4a89c335ff7f0471a, type: 3}
+  m_Script: {fileID: 11500000, guid: c0216a02eb2aad44fb67266c89cd1e20, type: 3}
   m_Name: Pacoca
   m_EditorClassIdentifier: 
   name: "Pa\xE7oca"
-  description: 'Aumento de vida e de dano por 3 minutos, cuidado com a diabetes. '
+  description: Aumento de 125% no dano e vida por 3 minutos
   price: 2000
-  isAvaliable: 1
-  healIncrementPerc: 200
+  isAvaliable: 0
+  healIncrementPerc: 125
   speedIncrementPerc: 0
-  damageIncrementPerc: 150
+  damageIncrementPerc: 125
   effectDuration: 180

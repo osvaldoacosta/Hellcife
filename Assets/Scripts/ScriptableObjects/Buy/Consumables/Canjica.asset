@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa9622cf2fe24ca4cadb179c0a73200f, type: 3}
+  m_Script: {fileID: 11500000, guid: ca3af61b4132fdc4e8411c2ea23e1260, type: 3}
   m_Name: Canjica
   m_EditorClassIdentifier: 
   name: Canjica
-  description: Bom pra ir no banheiro depois
-  price: 500
+  description: 'Vegano e zero lactose '
+  price: 1200
   isAvaliable: 1
-  recoverValue: 200
+  recoverValue: 150

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc328cc201e28ea4485b446fd201aff9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45c22b3cdf1865f40856c52ffcdac5a3, type: 3}
   m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
   name: Aumento de dano
-  description: Aumento de 20% do dano
+  description: Aumento de 150% no dano da arma
   useLimit: 5
-  valueToAdd: 120
-  price: 1000
+  valueToAdd: 150
+  price: 2500

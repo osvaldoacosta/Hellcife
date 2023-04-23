@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e086e3406f5b8df4a89c335ff7f0471a, type: 3}
+  m_Script: {fileID: 11500000, guid: c0216a02eb2aad44fb67266c89cd1e20, type: 3}
   m_Name: CafeComLeite
   m_EditorClassIdentifier: 
   name: "Caf\xE9 com leite"
-  description: "Aumento de vida e de velocidade por 3 minutos. Quero caf\xE9ee"
+  description: Aumento de 125% na velocidade e  vida por 3 minutos
   price: 1500
   isAvaliable: 1
-  healIncrementPerc: 150
-  speedIncrementPerc: 150
+  healIncrementPerc: 125
+  speedIncrementPerc: 125
   damageIncrementPerc: 0
   effectDuration: 180

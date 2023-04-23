@@ -52,9 +52,13 @@ public class ShopInteraction : MonoBehaviour
         Target player = GetComponent<Target>();
         player.Heal(hpToHeal);
     }
-
-    public IEnumerator UseItemWithEffect(ushort healIncrementPerc, ushort damageIncrementPerc, ushort speedIncrementPerc, float effectDuration)
+    //ushort healIncrementPerc, ushort damageIncrementPerc, ushort speedIncrementPerc, float effectDuration
+    public IEnumerator UseItemWithEffect(EffectConsumable consumable)
     {
+        if (!consumable.isAvaliable)
+        {
+            yield break;
+        }
         Debug.Log("Entrou");
         Target player = GetComponent<Target>();
         PlayerShoot playerShoot = GetComponent<PlayerShoot>();
@@ -63,28 +67,30 @@ public class ShopInteraction : MonoBehaviour
         float oldPlayerMaxHp = player.GetMaxHealth();
         float oldPlayerDamage = playerShoot.GetPlayerBaseDamage();
 
-        if (healIncrementPerc > 100)
+        if (consumable.healIncrementPerc > 100)
         {
-            float newMaxHp = player.GetMaxHealth() * healIncrementPerc/100f;
+            float newMaxHp = player.GetMaxHealth() * consumable.healIncrementPerc /100f;
             player.SetMaxHealth(newMaxHp);
             player.Heal(newMaxHp - oldPlayerMaxHp);
         }
-        if (damageIncrementPerc > 100)
+        if (consumable.damageIncrementPerc > 100)
         {
-            playerShoot.SetPlayerBaseDamage(damageIncrementPerc/100f * oldPlayerDamage   );
+            playerShoot.SetPlayerBaseDamage(consumable.damageIncrementPerc /100f * oldPlayerDamage   );
         }
-        if(speedIncrementPerc > 100)
+        if(consumable.speedIncrementPerc > 100)
         {
-            IncreasePlayerSpeed(speedIncrementPerc);
+            IncreasePlayerSpeed(consumable.speedIncrementPerc);
         }
 
-        
         try
         {
-            yield return new WaitForSeconds(effectDuration);
+            consumable.isAvaliable = false;
+            yield return new WaitForSeconds(consumable.effectDuration);
         }
+
         finally
         {
+            consumable.isAvaliable = true;
             player.SetMaxHealth(oldPlayerMaxHp);
             player.Heal(0); //Capa o hp atual na vida maxima
             playerShoot.SetPlayerBaseDamage(oldPlayerDamage);

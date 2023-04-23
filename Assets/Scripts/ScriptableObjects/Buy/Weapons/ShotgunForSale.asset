@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99656a51383a2c4bb02185b04ba3c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f47ac5baa2051c4c92e00d5cbb960f5, type: 3}
   m_Name: ShotgunForSale
   m_EditorClassIdentifier: 
-  name: Shotgun
-  description: Arminha que faz tchuq tchuq
+  name: Escopeta
+  description: Escopeta que dispara 7 projeteis ao mesmo tempo
   price: 3000
   isAvaliable: 1
-  gunInfo: {fileID: 11400000, guid: 76401c45b5e596a4b830a3aae37914b4, type: 2}
+  gunInfo: {fileID: 11400000, guid: f00c0de341c01b64c86dac45e127649a, type: 2}
