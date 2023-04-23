@@ -37,6 +37,10 @@ public class Target : MonoBehaviour, IDamageable
     {
         return current_health;
     }
+    public float GetMaxHealth()
+    {
+        return max_health;
+    }
     public void SetMaxHealth(float health)
     {
         this.max_health = health;
@@ -64,6 +68,10 @@ public class Target : MonoBehaviour, IDamageable
         if(heal+current_health <= max_health)
         {
             current_health += heal;
+        }
+        else
+        {
+            current_health = max_health;
         }
     }
     public bool IsDead()

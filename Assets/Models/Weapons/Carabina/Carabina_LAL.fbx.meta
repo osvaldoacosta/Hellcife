@@ -1,49 +1,14 @@
 fileFormatVersion: 2
-guid: 3bcd6f46a2f78f14693756a57b7d25a1
+guid: abc4b02804a0835408bf417815feac3e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Dark Steel
-    second: {fileID: 2100000, guid: cb038998277f32347baf76dfdfb97fb5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rough Iron Steel
-    second: {fileID: 2100000, guid: 1bef64ed9fe133149a1608a03de5f8c7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Steel.001
-    second: {fileID: 2100000, guid: b55f40e6f18c764428856413f3ce9606, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Roughness
-    second: {fileID: 2800000, guid: 8439236fefa668d4e9b0281f828f7521, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Steel Grey_old_Base Color
-    second: {fileID: 2800000, guid: e7369f8fa99e9894a994124ebd91ca3d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Steel Grey_old_Metallic
-    second: {fileID: 2800000, guid: 1639b1c8944282341ab3a9362694d050, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Steel Grey_old_Roughness
-    second: {fileID: 2800000, guid: 8e81c4dd2152e9447a24f2ecd3fcda55, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -70,7 +35,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -123,7 +88,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

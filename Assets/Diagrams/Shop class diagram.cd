@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Shop">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAIAAAACAAAIA=</HashCode>
+      <FileName>Assets\Scripts\Shop\Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UpgradePowerUp">
+    <Position X="7.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAABABAAIAAAAAAAACQAAAAAEAAEAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Shop\Upgrade\Player\UpgradePowerUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerUpUpgradeShop">
+    <Position X="10.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Shop\Upgrade\Player\PowerUpUpgradeShop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

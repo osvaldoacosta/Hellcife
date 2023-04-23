@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerStartScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject defaultWeapon;
+    public Gun[] guns;
+    
+
     void Start()
     {
         gameObject.tag = "Player";
         //Vida
         //gameObject.GetComponent<Target>().SetMaxHealth(100f);
         //Arma inicial
-        Gun gun = defaultWeapon.GetComponent<Gun>();
 
-        gameObject.GetComponent<PlayerGunInventory>().guns.Add(gun);
+        gameObject.GetComponent<PlayerGunInventory>().guns.Add(guns[0]);
         // gameObject.GetComponent<PlayerHudController>().InitialWeaponChange(gun.GetGunInfo()); 
-        //Qtd de Itens
+        foreach(Gun gun in guns)
+        {
+            GunInfo guninfo = gun.GetGunInfo();
+            guninfo.isReloading = guninfo.isReloading && false;
+            gun.SetGunInfo(Instantiate(guninfo));
+        }
         
-        
-        //EtC
+
+
     }
 
 
