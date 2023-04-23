@@ -13,21 +13,16 @@ MonoBehaviour:
   m_Name: Plock
   m_EditorClassIdentifier: 
   name: Plock
-  description: 
+  description: Pistola daora
   damage: 10
-  maxDistance: 50
-  isAutomatic: 1
+  maxDistance: 0
+  isAutomatic: 0
   wasShot: 0
-<<<<<<<< HEAD:Assets/Scripts/ScriptableObjects/Weapon/Weapon Object/Pistola/Glock.asset
-  bulletsPerShot: 1
-  currentAmmo: 1615
-========
   bulletsPerShot: 0
-  currentAmmo: 10
->>>>>>>> feature/map:Assets/Scripts/ScriptableObjects/Weapon/Weapon Object/Plock.asset
-  magSize: 15
-  roundsPerMinute: 1000
-  reloadTime: 3
-  isMagReloaded: 1
+  currentAmmo: 0
+  magSize: 0
+  roundsPerMinute: 0
+  reloadTime: 0
+  isMagReloaded: 0
   isReloading: 0
   isAiming: 0

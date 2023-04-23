@@ -39,7 +39,7 @@ public class ShopInteraction : MonoBehaviour
     {
         PlayerMovement player = GetComponent<PlayerMovement>();
         float value = player.movementSpeed * (float)speedPercentageToAdd / 100f;
-        player.SetSpeed(value); //Como valueToAdd da tapiocainfo ta com um ushort, eh melhor usar porcentagem do que fazer uma conversao (ushort, float) desnecessaria
+        player.setSpeed(value); //Como valueToAdd da tapiocainfo ta com um ushort, eh melhor usar porcentagem do que fazer uma conversao (ushort, float) desnecessaria
     }
     public void IncreaseCarryingCapacity()
     {
@@ -94,7 +94,7 @@ public class ShopInteraction : MonoBehaviour
             player.SetMaxHealth(oldPlayerMaxHp);
             player.Heal(0); //Capa o hp atual na vida maxima
             playerShoot.SetPlayerBaseDamage(oldPlayerDamage);
-            playerMovement.SetSpeed(oldPlayerSpeed);
+            playerMovement.setSpeed(oldPlayerSpeed);
         }
 
     }

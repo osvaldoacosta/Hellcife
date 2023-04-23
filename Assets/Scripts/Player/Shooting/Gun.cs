@@ -79,12 +79,12 @@ public class Gun : MonoBehaviour
             {
                 if (gunInfo.isMagReloaded)
                 {
-                    OnMagGunShoot();
+                    OnMagGunShoot(playerBaseDamage);
                     playerRigging.OnGunShoot();
                 }
                 else
                 {
-                    OnShotgunShoot();
+                    OnShotgunShoot(playerBaseDamage);
                     playerRigging.OnGunShoot();
                 }
 
@@ -92,7 +92,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void OnMagGunShoot()
+    private void OnMagGunShoot(float playerBaseDamage)
     {
 
         Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
@@ -115,7 +115,7 @@ public class Gun : MonoBehaviour
 
     }
 
-    private void OnShotgunShoot()
+    private void OnShotgunShoot(float playerBaseDamage)
     {
         Vector3 muzzleDirection = muzzle.transform.TransformDirection(Vector3.forward);
         for (int i = 0; i <gunInfo.bulletsPerShot; i++)
@@ -123,7 +123,7 @@ public class Gun : MonoBehaviour
             // Instantiate a bullet from the object pool
             GameObject bullet = bulletPool.GetPooledObject();
             Debug.Log("entrada: " + bullet.activeSelf);
-            bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage); // Set the damage of the bullet
+            bullet.GetComponent<Bullet>().SetDamage(gunInfo.damage * playerBaseDamage); // Set the damage of the bullet
             bullet.transform.position = muzzle.position; // Set the position of the bullet to the muzzle position
 
             // Calculate a random direction and velocity for the bullet
