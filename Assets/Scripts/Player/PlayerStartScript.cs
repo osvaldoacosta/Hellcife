@@ -17,8 +17,8 @@ public class PlayerStartScript : MonoBehaviour
         gameObject.GetComponent<PlayerGunInventory>().guns.Add(gun);
         // gameObject.GetComponent<PlayerHudController>().InitialWeaponChange(gun.GetGunInfo()); 
         //Qtd de Itens
-        
-        
+        Debug.Log(gameObject.GetComponent<PlayerGunInventory>().guns.Count);
+
         //EtC
     }
 

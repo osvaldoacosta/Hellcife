@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public static Action shootInput;
+    public static Action<float> shootInput;
     public static Action reloadInput;
-    
+    [SerializeField] private float playerBaseDamage = 1;
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private GunInfo currentGunInfo;
     
-    
+    public float GetPlayerBaseDamage()
+    {
+        return playerBaseDamage;
+    }
+    public void SetPlayerBaseDamage(float playerBaseDamage)
+    {
+        this.playerBaseDamage = playerBaseDamage;
+    }
+
     private void Update()
     {
         //MELHORAR ISSO AQUI ._.
@@ -18,12 +26,12 @@ public class PlayerShoot : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                shootInput?.Invoke();
+                shootInput?.Invoke(playerBaseDamage);
             }
         }
         if (Input.GetMouseButtonDown(0))
         {
-            shootInput?.Invoke();
+            shootInput?.Invoke(playerBaseDamage);
         }
 
         if (Input.GetKeyDown(reloadKey))

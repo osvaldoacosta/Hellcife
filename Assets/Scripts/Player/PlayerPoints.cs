@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerPoints: MonoBehaviour
 {
-    private ulong points;
+    public ulong points;
     void Start()
     {
-        points= 0;
+        points= 1000000;
     }
 
     public void GainPoints(ulong points)
     {
         this.points += points; 
     }
+    public void LosePoints(ulong points)
+    {
+        this.points -= points;
+    }
 
     public ulong GetPoints()
     {
         return points;
     }
-
+    
 }
