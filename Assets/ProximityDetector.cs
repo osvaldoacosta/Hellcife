@@ -4,6 +4,7 @@ public class ProximityDetector : MonoBehaviour
 {
     public GameObject objectToDetect;
     public GameObject Texto;
+    public GameObject uiDaLoja;
     public float proximityThreshold = 2f;
 
     private Renderer renderer;
@@ -13,13 +14,21 @@ public class ProximityDetector : MonoBehaviour
         renderer = GetComponent<Renderer>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float distance = Vector3.Distance(transform.position, objectToDetect.transform.position);
         if (distance < proximityThreshold)
         {
             renderer.material.color = Color.red;
-            Texto.SetActive(true);
+            
+            if (uiDaLoja.activeSelf) Texto.SetActive(false);
+            else Texto.SetActive(true);
+            
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                uiDaLoja.SetActive(true);
+                
+            }
         }
         else
         {
