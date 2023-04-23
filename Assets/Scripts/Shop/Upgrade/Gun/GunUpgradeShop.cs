@@ -15,6 +15,8 @@ public class GunUpgradeShop : UpgradeShop
     [SerializeField] private UpgradeInfo uniqueGunUpgradeRef;
 
     [SerializeField] private Gun pistolReference;
+    [SerializeField] private GameObject secondPistolRef;
+    [SerializeField] private Transform refRightHandSecondPistol;
     [SerializeField] private Gun shotgunReference;
     [SerializeField] private Gun rifleReference;
 
@@ -45,7 +47,7 @@ public class GunUpgradeShop : UpgradeShop
     public void SetGunToUpgrade(Gun gun)
     {
         gunToUpgrade = gun;
-        gun.SetGunInfo(Instantiate(gun.GetGunInfo(), transform)); //Instanciando o scriptable object 
+        //gun.SetGunInfo(Instantiate(gun.GetGunInfo(), transform)); //Instanciando o scriptable object 
     }
 
     public void OnGunUpgradeButtonClicked(UpgradeInfo gunUpInfo)
@@ -149,8 +151,10 @@ public class GunUpgradeShop : UpgradeShop
                 {
                     Debug.Log("Upgrade unico da pistola 3");
                     gunInfo.isAutomatic = true;
-                    Gun secondGun = Instantiate(gunToUpgrade);
-                    GetShopInteraction().GetPlayerGunInInventory().Add(secondGun);
+                    secondPistolRef.GetComponent<Gun>().GetGunInfo().isAutomatic = true;
+                    Debug.Log("AA:" + secondPistolRef.GetComponent<Gun>().GetGunInfo().isAutomatic);
+                    secondPistolRef.SetActive(true);
+                    GetShopInteraction().GetComponent<PlayerRiggingModifier>().EquipDualies(secondPistolRef.GetComponent<Gun>(), refRightHandSecondPistol);
 
                 }
                 else if (gunToUpgrade.Equals(shotgunReference))

@@ -214,5 +214,9 @@ public class PlayerRiggingModifier : MonoBehaviour
         }
     }
 
-
+    public void EquipDualies(Gun otherPistol,Transform right_hand )
+    {
+        this.other_pistol = otherPistol;
+        otherPistolRefRightHand = right_hand;
+    }
 }

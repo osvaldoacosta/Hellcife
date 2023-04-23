@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "N\xE3o, voc\xEA n\xE3o vira o rei da cocada preta, mas pelo menos
     ganha uma aumento de 150% em todas as estat\xEDtsticas por 4 minutos."
   price: 9000
-  isAvaliable: 0
+  isAvaliable: 1
   healIncrementPerc: 150
   speedIncrementPerc: 150
   damageIncrementPerc: 150

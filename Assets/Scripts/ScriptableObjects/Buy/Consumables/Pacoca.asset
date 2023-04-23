@@ -15,7 +15,7 @@ MonoBehaviour:
   name: "Pa\xE7oca"
   description: Aumento de 125% no dano e vida por 3 minutos
   price: 2000
-  isAvaliable: 0
+  isAvaliable: 1
   healIncrementPerc: 125
   speedIncrementPerc: 0
   damageIncrementPerc: 125
