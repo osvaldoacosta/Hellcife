@@ -15,14 +15,16 @@ public class GunInfo : ScriptableObject
     public bool isAutomatic;
     public bool wasShot;
     public ushort bulletsPerShot;
-
+    
     [Header("Reloading")]
     public int currentAmmo;
     public int magSize;
     public float roundsPerMinute;
     public float reloadTime;
-
+    public bool isMagReloaded;
     public bool isReloading;
     public bool isAiming;
+
+    
     
 }

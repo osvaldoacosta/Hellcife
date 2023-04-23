@@ -7,15 +7,17 @@ public class PlayerGunInventory : MonoBehaviour
 {
     [SerializeField] public List<Gun> guns;
     [SerializeField] private ushort currentWeaponIndex;
+    private PlayerRiggingModifier playerRiggingModifier;
     public static Action<ushort,Gun> onWeaponChange; 
     [SerializeField]private ushort carryingSize;
    
 
     void Start()
     {
-        guns = new List<Gun>();
+        playerRiggingModifier = GetComponent<PlayerRiggingModifier>();
         currentWeaponIndex = 0;
         carryingSize = 2;
+        EquipWeapon();
     }
 
     // Update is called once per frame
@@ -77,19 +79,27 @@ public class PlayerGunInventory : MonoBehaviour
             if(gun == null){
               continue;
             }
-            Debug.Log(gun.name);
             gun.gameObject.SetActive(false);
         }
-        //Posso colocar um ~yield da animação de troca de arma aqui
+        //Posso colocar um ~yield da animaï¿½ï¿½o de troca de arma aqui
 
-        //Troca pra arma escolhida
-        Debug.Log($"{guns.Count} -- {currentWeaponIndex}");
         if(guns.Count > currentWeaponIndex)
         {
-            guns[currentWeaponIndex].gameObject.SetActive(true);
+            Gun gunToEquip = guns[currentWeaponIndex];
+            Debug.Log("Changed to: " + gunToEquip?.name);
+
+            //Troca pra arma escolhida
+            gunToEquip?.gameObject?.SetActive(true);
+
         }
 
-        //Se não tiver uma arma secundária, ele fica pelado >_<
+        //Muda o jeito em que ele segura a arma
+        playerRiggingModifier.ChangeWeaponRig(GetCurrentGun());
+
+
+        //Se nï¿½o tiver uma arma secundï¿½ria, ele fica pelado >_<
         onWeaponChange?.Invoke(currentWeaponIndex,GetCurrentGun()); 
     }
+
+
 }

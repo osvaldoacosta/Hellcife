@@ -9,15 +9,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float playerBaseDamage = 1;
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private GunInfo currentGunInfo;
-    
-    public float GetPlayerBaseDamage()
-    {
-        return playerBaseDamage;
-    }
-    public void SetPlayerBaseDamage(float playerBaseDamage)
-    {
-        this.playerBaseDamage = playerBaseDamage;
-    }
 
     private void Update()
     {
@@ -31,11 +22,13 @@ public class PlayerShoot : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            shootInput?.Invoke(playerBaseDamage);
+            shootInput?.Invoke();
+
         }
 
         if (Input.GetKeyDown(reloadKey))
         {
+
             Debug.Log("Reloading");
             reloadInput?.Invoke();
         }
