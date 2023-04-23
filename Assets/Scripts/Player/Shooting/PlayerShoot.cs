@@ -29,7 +29,7 @@ public class PlayerShoot : MonoBehaviour
     private void Update()
     {
         //MELHORAR ISSO AQUI ._.
-        if (currentGunInfo.isAutomatic)
+        if (currentGunInfo !=null && currentGunInfo.isAutomatic)
         {
             if (Input.GetMouseButton(0))
             {

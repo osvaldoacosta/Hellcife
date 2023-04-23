@@ -15,14 +15,14 @@ MonoBehaviour:
   name: Plock
   description: Pistola daora
   damage: 10
-  maxDistance: 0
+  maxDistance: 55
   isAutomatic: 0
   wasShot: 0
-  bulletsPerShot: 0
-  currentAmmo: 0
-  magSize: 0
-  roundsPerMinute: 0
-  reloadTime: 0
-  isMagReloaded: 0
+  bulletsPerShot: 1
+  currentAmmo: 8
+  magSize: 13
+  roundsPerMinute: 666
+  reloadTime: 3.5
+  isMagReloaded: 1
   isReloading: 0
   isAiming: 0

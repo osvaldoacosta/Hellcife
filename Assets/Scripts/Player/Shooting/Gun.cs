@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour
     {
         if (!gunInfo.isReloading)
         {
-            StartCoroutine(Reload());
+            StartCoroutine(Reload()); //Isso dá um erro pois recarrega todas as outras armas, porem eh irrelevante, ja que as armas desativas nao poderao ser recarregadas
         }
     }
     private IEnumerator Reload()

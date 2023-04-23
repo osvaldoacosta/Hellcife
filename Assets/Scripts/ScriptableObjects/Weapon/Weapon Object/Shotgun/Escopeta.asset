@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Escopeta
   m_EditorClassIdentifier: 
   name: Remington
+  description: 
   damage: 3
   maxDistance: 50
   isAutomatic: 0
