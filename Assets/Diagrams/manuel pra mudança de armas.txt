@@ -1,0 +1,7 @@
+qd for pistola - mudar ref_right_hand pro da pistola, remover o ref_left e deixar o hint weight em 0.163
+
+qd for carabina - mudar o ref_right_hand e o left pro da carabina, e deixar os hints no máximo
+
+qd for shotgun - mudar o ref_right_hand e o left hand, deixar o hint right em 0.716
+
+qd for nada - botar tudo zerado hint, weight

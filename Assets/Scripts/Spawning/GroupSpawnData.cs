@@ -6,20 +6,20 @@ public class GroupSpawnData
 {
     public List<EnemySpawnData> enemyGroup {get; private set;}
 
-    public float cooldownBeforeThisSpawn {get; private set;}
+    public float cooldownAfterThisSpawn {get; private set;}
 
     public GroupSpawnData(GroupSpawnData otherGroup){
-        this.cooldownBeforeThisSpawn= otherGroup.cooldownBeforeThisSpawn;
+        this.cooldownAfterThisSpawn= otherGroup.cooldownAfterThisSpawn;
 
         this.enemyGroup = new List<EnemySpawnData>(otherGroup.enemyGroup);
     }
-    public GroupSpawnData(float cooldownBeforeThisSpawn){
+    public GroupSpawnData(float cooldownAfterThisSpawn){
         this.enemyGroup= new List<EnemySpawnData>();
-        this.cooldownBeforeThisSpawn= cooldownBeforeThisSpawn;
+        this.cooldownAfterThisSpawn= cooldownAfterThisSpawn;
     }
     public GroupSpawnData(){
         this.enemyGroup= new List<EnemySpawnData>();
-        this.cooldownBeforeThisSpawn= 0f;
+        this.cooldownAfterThisSpawn= 0f;
     }
 
     public void addEnemyToGroup(EnemySpawnData enemy, int quantity){
@@ -31,8 +31,8 @@ public class GroupSpawnData
             enemyGroup.Add(newEnemy);
         }
     }
-    public void setCooldownBeforeThisSpawn(float cooldownBeforeThisSpawn){
-        this.cooldownBeforeThisSpawn= cooldownBeforeThisSpawn;
+    public void setCooldownAfterThisSpawn(float cooldownAfterThisSpawn){
+        this.cooldownAfterThisSpawn= cooldownAfterThisSpawn;
     }
     
 }

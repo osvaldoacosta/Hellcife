@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f47ac5baa2051c4c92e00d5cbb960f5, type: 3}
+  m_Name: PlockForSale
+  m_EditorClassIdentifier: 
+  name: Plock
+  description: Pistola leve que causa estrago
+  price: 1000
+  isAvaliable: 1
+  gunInfo: {fileID: 11400000, guid: 2fa7601aefea8bc43be0fe3890e397fe, type: 2}

@@ -64,16 +64,14 @@ public class PlayerHudController : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            ExtendInventoryHud();
-        }
+        
         ChangeGunStats(); //Quick fix, o certo seria no reload e no tiro ter um action.
         pointsText.text = $"{points.GetPoints()}";
         healthText.text = $"{target.GetHealth()}";
     }
 
     private void WeaponChange(ushort index, Gun currentGun){
+
         currentGunInfo = currentGun?.GetGunInfo();
         ChangeGunStats(); 
         UnhighlightBtns();

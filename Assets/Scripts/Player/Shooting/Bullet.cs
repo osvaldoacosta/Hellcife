@@ -33,13 +33,17 @@ public class Bullet : MonoBehaviour
             }
             
         }
-
-        Disable();
+        if(other.GetComponent<Bullet>() == null) //Se nao tocar em nada alem de outras balas e inimigos, vai desabilitar a bala
+        { 
+            Disable();
+        }
     }
     private void Disable()
     {
+        
         bulletRb.velocity = Vector3.zero;
         gameObject.SetActive(false);
+        
     }
     public void SetDamage(float damage)
     {

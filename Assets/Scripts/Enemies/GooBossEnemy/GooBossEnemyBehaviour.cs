@@ -56,11 +56,20 @@ public class GooBossEnemyBehaviour : MonoBehaviour
     public float selfGooPuddleRadius = 8f;
     public float selfGooPuddleDuration= 6f;
     
+    private float runAnimationOffset;
+    private Animator animator;
 
-
+    void Start(){
+        runAnimationOffset= Random.Range(0, 1f);
+        animator = GetComponent<Animator>();
+        animator.SetFloat("RunOffset", runAnimationOffset);
+        target= GameObject.FindWithTag("Player");
+        gooPuddleObjectPool= GameObject.FindWithTag("GooPuddlePool");
+    }
     // Update is called once per frame
     void Update()
     {
+        animateAction();
         if(isActionLocked()){
             switch (activeEnemyState){
                 case EnemyStates.windingUpAttack:
@@ -183,7 +192,9 @@ public class GooBossEnemyBehaviour : MonoBehaviour
         }
         
     }
-
+    private void animateAction(){
+        animator.SetInteger("EnemyState", (int) activeEnemyState);
+    }
     private void enemyAction(){
         switch (activeEnemyState){
             case EnemyStates.idle:

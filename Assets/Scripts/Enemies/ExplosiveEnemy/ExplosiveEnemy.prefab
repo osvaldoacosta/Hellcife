@@ -164,6 +164,7 @@ MonoBehaviour:
   bloodParticlePool: {fileID: 0}
   bleeds: 0
   current_health: 50
+  max_health: 200
 --- !u!1 &230322199796437480
 GameObject:
   m_ObjectHideFlags: 0
